@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2982478035226924516}
   - component: {fileID: -7283085883263672102}
+  - component: {fileID: -3285255198033068402}
+  - component: {fileID: 1619751729133972621}
+  - component: {fileID: -229599176222788895}
   m_Layer: 0
   m_Name: AI Ball
   m_TagString: Untagged
@@ -44,6 +47,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932df62fd37848245a6a9a2b60779c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3285255198033068402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982478035226924517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5817c0af506b104880863a2e46924b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 5
+  ballLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isBallNearby: 0
+--- !u!114 &1619751729133972621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982478035226924517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedExposedParameters: []
+  _boundGraphSerialization: 
+  _boundGraphObjectReferences: []
+  _boundGraphSource:
+    _version: 0
+    _category: 
+    _comments: 
+    _translation: {x: 0, y: 0}
+    _zoomFactor: 1
+  _firstActivation: 0
+  _enableAction: 0
+  _disableAction: 0
+  _lockBoundGraphPrefabOverrides: 1
+  _preInitializeSubGraphs: 0
+  _updateMode: 0
+  _graph: {fileID: 11400000, guid: 3b94d433337c3a04f919264f92366b48, type: 2}
+  _blackboard: {fileID: -229599176222788895}
+--- !u!114 &-229599176222788895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982478035226924517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentBlackboard: {fileID: 0}
+  _serializedBlackboard: '{"_variables":{"isBallNearby":{"_propertyPath":"AIBallModel.isBallNearby","_name":"isBallNearby","_id":"c12d7288-604c-4403-b025-508ca6d7e84c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"mySize":{"_value":5.0,"_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"otherBallSize":{"_value":5.0,"_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
+  _objectReferences: []
+  _serializedVariables:
+  - _json: '{"_propertyPath":"AIBallModel.isBallNearby","_name":"isBallNearby","_id":"c12d7288-604c-4403-b025-508ca6d7e84c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_value":5.0,"_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_value":5.0,"_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
 --- !u!1 &2982478036515792050
 GameObject:
   m_ObjectHideFlags: 0
