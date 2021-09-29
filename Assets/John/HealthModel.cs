@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HealthModel : MonoBehaviour
 {
-    float health = 50;
+    [SerializeField]
+    float health;
     //public float max
 
     public delegate void HealthSignature();
