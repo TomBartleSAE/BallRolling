@@ -12,18 +12,18 @@ public class HealthModel : MonoBehaviour
 
     //DEATH EVENT
     public delegate void DeathSignature();
-    public static event DeathSignature DeathEvent;
+    public event DeathSignature DeathEvent;
 
-    public static void DeathFunction()
+    public void DeathFunction()
     {
         DeathEvent?.Invoke();
     }
 
     //MAX HEALTH EVENT
     public delegate void MaxHealthSignature();
-    public static event MaxHealthSignature MaxHealthEvent;
+    public event MaxHealthSignature MaxHealthEvent;
 
-    public static void MaxHealthFunction()
+    public void MaxHealthFunction()
     {
         MaxHealthEvent?.Invoke();
     }

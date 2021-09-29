@@ -5,10 +5,16 @@ using UnityEngine;
 public class ThingWithHealth : MonoBehaviour
 {
     public float deathTimer;
+    HealthModel myHealth;
+
+    void Awake()
+    {
+        myHealth = GetComponent<HealthModel>();
+    }
 
     void Start()
     {
-        //StartCoroutine(KillObject());
+        StartCoroutine(KillObject());
         //StartCoroutine(IncreaseHealth());
 
         //Invoke("InflictDamage", 5f);
@@ -21,8 +27,8 @@ public class ThingWithHealth : MonoBehaviour
   
     void OnEnable()
     {
-        HealthModel.DeathEvent += Die;
-        HealthModel.MaxHealthEvent += MaxHealth;
+        myHealth.DeathEvent += Die;
+        myHealth.MaxHealthEvent += MaxHealth;
     }
 
     void Die()

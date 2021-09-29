@@ -6,6 +6,6 @@ public class HealthButtons : MonoBehaviour
 {
     public void DeathButton()
     {
-        HealthModel.DeathFunction();
+        FindObjectOfType<HealthModel>().DeathFunction();
     }
 }
