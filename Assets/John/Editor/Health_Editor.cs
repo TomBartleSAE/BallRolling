@@ -15,5 +15,10 @@ public class Health_Editor : Editor
 		{
 			(target as HealthModel)?.DeathButton();
 		}
+
+		if (GUILayout.Button("Max Health Button"))
+		{
+			(target as HealthModel)?.MaxHealthButton();
+		}
 	}
 }
