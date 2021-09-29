@@ -8,7 +8,8 @@ public class ThingWithHealth : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(KillObject());
+        //StartCoroutine(KillObject());
+        StartCoroutine(IncreaseHealth());
         //Invoke("InflictDamage", 5f);
     }
 
@@ -20,8 +21,8 @@ public class ThingWithHealth : MonoBehaviour
     void OnEnable()
     {
         HealthModel.DeathEvent += Die;
+        HealthModel.MaxHealthEvent += MaxHealth;
     }
-
 
     void Die()
     {
@@ -29,6 +30,7 @@ public class ThingWithHealth : MonoBehaviour
         Debug.Log("This Object Is Now Dead");
     }
 
+    //DAMAGE OBJECT
     IEnumerator KillObject()
     {
         print("I Will Die In 5 Seconds");
@@ -39,9 +41,25 @@ public class ThingWithHealth : MonoBehaviour
 
     }
 
+    void MaxHealth()
+    {
+        print("MAX HEALTH REACHED");
+    }
+
+    //GIVE HEALTH
+    IEnumerator IncreaseHealth()
+    {
+        print("I will reached max health in 5 Seconds");
+
+        yield return new WaitForSeconds(5f);
+
+        this.GetComponent<HealthModel>().ChangeHealth(50);
+
+    }
+
 
     //void InflictDamage()
-   // {
-        //this.GetComponent<HealthModel>().ChangeHealth(-50);
-   // }
+    // {
+    //this.GetComponent<HealthModel>().ChangeHealth(-50);
+    // }
 }
