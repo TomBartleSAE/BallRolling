@@ -9,60 +9,66 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "e7a95867-76a8-424d-bc5a-cf11ee1db597",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Turning",
-                    "type": "Value",
-                    "id": "dfa6d118-1f38-4961-b3f9-879dc0354482",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "0e17f575-3a0f-4217-b65a-86e4332d64f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "0350c9be-3bb5-4eb8-824b-bba1c55c5996",
+                    "name": "2D Vector",
+                    "id": "544449ba-177d-48e1-92f7-4b457a5fef5c",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "9360bb4f-3a45-4b9e-b0c5-86ff9b84810f",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "5de07bd0-d419-4ea2-994b-1c3e77d0b32e",
+                    "name": "down",
+                    "id": "d530943e-ebac-4e82-ba97-0bf767b5b818",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "27ed8100-fba8-42eb-89fc-999b5f51ba0d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "41be0b57-41d4-4df4-b107-9b2e5b06f3f0",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Turning",
+                    "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ec7f72b-93ef-48fa-9fad-146451b48c1d",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },
