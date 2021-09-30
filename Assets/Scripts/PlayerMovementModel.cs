@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementModel : MonoBehaviour
 {
@@ -10,14 +11,14 @@ public class PlayerMovementModel : MonoBehaviour
         TestActionMap testActionMap = new TestActionMap();
         testActionMap.InGame.Enable();
 
-        //testActionMap.InGame.Movement.performed += PlayerMovement;
+        testActionMap.InGame.Movement.performed += PlayerMovement;
     }
 
     //NEED TO FIX
-    //void PlayerMovement(InputAction.CallbackContext obj)
-    //{
-       // Debug.Log(obj.ReadValue<Vector2>());
-   // }
+    void PlayerMovement(InputAction.CallbackContext obj)
+    {
+        Debug.Log(obj.ReadValue<Vector2>());
+    }
 
 
 
