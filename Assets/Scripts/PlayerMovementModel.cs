@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementModel : MonoBehaviour
 {
+    public Rigidbody rb;
+    Vector2 playerInput;
+
+    [SerializeField]
+    float speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +24,29 @@ public class PlayerMovementModel : MonoBehaviour
     void PlayerMovement(InputAction.CallbackContext obj)
     {
         Debug.Log(obj.ReadValue<Vector2>());
+        playerInput = obj.ReadValue<Vector2>();
+        speed = 50;
+
+        //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
+        //rb.MovePosition(rb.position * playerInput * speed * Time.fixedDeltaTime);
     }
 
-
-
-
-    // Update is called once per frame
     void Update()
     {
-        
+        //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
+
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
+
+
+        //speed = 0;
+
+        //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
+
     }
 }
