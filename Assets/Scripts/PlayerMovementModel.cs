@@ -18,7 +18,6 @@ public class PlayerMovementModel : MonoBehaviour
         testActionMap.InGame.Enable();
 
         testActionMap.InGame.Movement.performed += PlayerMovement;
-        testActionMap.InGame.Movement.canceled += PlayerMovement;
     }
 
     //NEED TO FIX
@@ -26,7 +25,7 @@ public class PlayerMovementModel : MonoBehaviour
     {
         Debug.Log(obj.ReadValue<Vector2>());
         playerInput = obj.ReadValue<Vector2>();
-        
+        speed = 50;
 
         //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
         //rb.MovePosition(rb.position * playerInput * speed * Time.fixedDeltaTime);
@@ -42,7 +41,7 @@ public class PlayerMovementModel : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddTorque(new Vector3(playerInput.x, 0f, playerInput.y) * speed, ForceMode.Force);
+        rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
 
 
         //speed = 0;
