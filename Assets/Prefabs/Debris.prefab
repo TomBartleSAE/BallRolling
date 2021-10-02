@@ -91,7 +91,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046404871593951384}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -106,6 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6170754453260166805}
   - component: {fileID: 530580214691174888}
+  - component: {fileID: 1981510227}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -140,3 +141,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5ff0e5852dccb42b5303d83e1dea50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 0.5
+--- !u!114 &1981510227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8437774173152578133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5526d05483691a40a9175ad17cf81c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myHealth: 1
+  maxHealth: 1

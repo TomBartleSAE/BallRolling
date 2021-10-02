@@ -1,18 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DebrisModel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float size;
+
+    public float GetSize()
     {
-        
+        return size;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Absorb()
     {
+        // Replace with tweened animation of debris going into ball
         
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        GetComponent<HealthModel>().DeathEvent += Absorb;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<HealthModel>().DeathEvent += Absorb;
     }
 }

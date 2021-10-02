@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 682025495192012836}
   - component: {fileID: 6202565827335979409}
   - component: {fileID: -894462112327642545}
+  - component: {fileID: 1946605408}
+  - component: {fileID: 1946605409}
   m_Layer: 0
   m_Name: Player Ball
   m_TagString: Untagged
@@ -45,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cdab2cea30e5449b101b1e4f8c6dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1946605408}
+  speed: 2
 --- !u!114 &-894462112327642545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +61,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932df62fd37848245a6a9a2b60779c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1946605408}
+  ballTransform: {fileID: 682025496193055089}
+--- !u!54 &1946605408
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682025495192012837}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1946605409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682025495192012837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5526d05483691a40a9175ad17cf81c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myHealth: 1
+  maxHealth: 1000
 --- !u!1 &682025496193055090
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682025496193055090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 682025495192012836}
