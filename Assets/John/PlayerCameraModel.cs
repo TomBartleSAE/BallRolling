@@ -15,9 +15,9 @@ public class PlayerCameraModel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.position + new Vector3(0, 40, 0);
+        transform.position = target.position + new Vector3(25, 15, 0);
         transform.LookAt(target);
-        transform.Rotate(new Vector3(0, 0, 90));
+        //transform.Rotate(new Vector3(0, 90, 0));
         //transform.SetPositionAndRotation(target.transform.position, target.transform.rotation);
     }
 }
