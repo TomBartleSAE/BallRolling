@@ -577,6 +577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 682025496193055095, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7592a8af6a2e62a469b745f000a976b1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
 --- !u!1001 &1210415423
