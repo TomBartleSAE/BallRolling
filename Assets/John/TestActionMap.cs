@@ -25,6 +25,14 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""LookDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""ce872378-488c-46a8-9d9a-2b811e2addd0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -82,6 +90,17 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96530446-b1eb-48e8-8894-585ca34d37e0"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -118,6 +137,7 @@ public class @TestActionMap : IInputActionCollection, IDisposable
         // InGame
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         m_InGame_Movement = m_InGame.FindAction("Movement", throwIfNotFound: true);
+        m_InGame_LookDirection = m_InGame.FindAction("LookDirection", throwIfNotFound: true);
         // InMenu
         m_InMenu = asset.FindActionMap("InMenu", throwIfNotFound: true);
         m_InMenu_Newaction = m_InMenu.FindAction("New action", throwIfNotFound: true);
@@ -171,11 +191,13 @@ public class @TestActionMap : IInputActionCollection, IDisposable
     private readonly InputActionMap m_InGame;
     private IInGameActions m_InGameActionsCallbackInterface;
     private readonly InputAction m_InGame_Movement;
+    private readonly InputAction m_InGame_LookDirection;
     public struct InGameActions
     {
         private @TestActionMap m_Wrapper;
         public InGameActions(@TestActionMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InGame_Movement;
+        public InputAction @LookDirection => m_Wrapper.m_InGame_LookDirection;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -188,6 +210,9 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnMovement;
+                @LookDirection.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnLookDirection;
+                @LookDirection.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnLookDirection;
+                @LookDirection.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnLookDirection;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -195,6 +220,9 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @LookDirection.started += instance.OnLookDirection;
+                @LookDirection.performed += instance.OnLookDirection;
+                @LookDirection.canceled += instance.OnLookDirection;
             }
         }
     }
@@ -235,6 +263,7 @@ public class @TestActionMap : IInputActionCollection, IDisposable
     public interface IInGameActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnLookDirection(InputAction.CallbackContext context);
     }
     public interface IInMenuActions
     {

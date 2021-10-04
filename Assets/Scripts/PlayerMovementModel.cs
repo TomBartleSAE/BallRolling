@@ -42,9 +42,10 @@ public class PlayerMovementModel : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
+        
 
-        rb.AddTorque(new Vector3(playerInput.x, 0f, playerInput.y) * speed, ForceMode.Force);
+        //rb.AddTorque(new Vector3(playerInput.x, 0f, playerInput.y) * speed, ForceMode.Force);
+        rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed/4, ForceMode.Force);
 
 
         //speed = 0;
