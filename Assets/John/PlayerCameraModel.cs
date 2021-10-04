@@ -26,10 +26,10 @@ public class PlayerCameraModel : MonoBehaviour
 
         zDefaultOffset = cam.transform.localPosition.z;
 
-        //TestActionMap testActionMap = new TestActionMap();
-        //testActionMap.InGame.Enable();
+        TestActionMap testActionMap = new TestActionMap();
+        testActionMap.InGame.Enable();
 
-        //testActionMap.InGame.LookDirection.performed += PlayerCamTest;
+        testActionMap.InGame.LookDirection.performed += PlayerCamTest;
     }
 
     
@@ -52,15 +52,6 @@ public class PlayerCameraModel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TestActionMap testActionMap = new TestActionMap();
-            testActionMap.InGame.Enable();
-
-            testActionMap.InGame.LookDirection.performed += PlayerCamTest;
-        }
-
         transform.position = target.position;
 
         if(targetHasRB)
