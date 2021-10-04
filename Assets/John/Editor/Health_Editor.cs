@@ -7,6 +7,7 @@ using UnityEditor;
 
 public class Health_Editor : Editor
 {
+	public float dps;
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
@@ -19,6 +20,21 @@ public class Health_Editor : Editor
 		if (GUILayout.Button("Max Health Button"))
 		{
 			(target as HealthModel)?.MaxHealthButton();
+		}
+
+		if (GUILayout.Button("0.5 Damage"))
+		{
+			(target as HealthModel)?.ChangeHealth(-0.5f);
+		}
+
+		if (GUILayout.Button("1 Damage"))
+		{
+			(target as HealthModel)?.ChangeHealth(-1);
+		}
+
+		if (GUILayout.Button("5 Damage"))
+		{
+			(target as HealthModel)?.ChangeHealth(-5);
 		}
 	}
 }

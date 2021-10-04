@@ -57,6 +57,4 @@ public class HealthModel : MonoBehaviour
     {
         MaxHealthFunction();
     }
-
-
 }
