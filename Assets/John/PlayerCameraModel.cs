@@ -7,17 +7,24 @@ public class PlayerCameraModel : MonoBehaviour
 {
     public Transform target;
     public Transform pivotX;
-    public Transform pivotY;
 
     float currentRotation = 0;
 
-    //public Camera cam;
+    public Camera cam;
+    float zDefaultOffset;
+
+    Rigidbody targetRB;
+    bool targetHasRB = false;
+
+    [SerializeField]
+    float velocityMultiplier = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
         ChangeTarget(target);
-        //cam = this.GetComponent<Camera>();
+
+        zDefaultOffset = cam.transform.localPosition.z;
 
         //TestActionMap testActionMap = new TestActionMap();
         //testActionMap.InGame.Enable();
@@ -55,6 +62,12 @@ public class PlayerCameraModel : MonoBehaviour
         }
 
         transform.position = target.position;
+
+        if(targetHasRB)
+        {
+            float targetVelocity = targetRB.velocity.magnitude * velocityMultiplier;
+            cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, cam.transform.localPosition.y, zDefaultOffset - targetVelocity);
+        }
         //transform.LookAt(target);
 
 
@@ -65,6 +78,17 @@ public class PlayerCameraModel : MonoBehaviour
     //CHANGE CAMERA TARGET
     public void ChangeTarget(Transform newTarget)
     {
+        if(newTarget.GetComponent<Rigidbody>() != null)
+        {
+            targetHasRB = true;
+            targetRB = newTarget.GetComponent<Rigidbody>();
+        }
+        else
+        {
+            targetHasRB = false;
+            targetRB = null;
+        }
+
         //Setting the target
         target = newTarget;
 
