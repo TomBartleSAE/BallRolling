@@ -94,7 +94,7 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""96530446-b1eb-48e8-8894-585ca34d37e0"",
-                    ""path"": ""<Mouse>/position"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

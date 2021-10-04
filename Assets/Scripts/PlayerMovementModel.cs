@@ -8,6 +8,8 @@ public class PlayerMovementModel : MonoBehaviour
     public Rigidbody rb;
     Vector2 playerInput;
 
+    CameraTarget camTarget;
+
     [SerializeField]
     float speed;
 
@@ -19,6 +21,8 @@ public class PlayerMovementModel : MonoBehaviour
 
         testActionMap.InGame.Movement.performed += PlayerMovement;
         testActionMap.InGame.Movement.canceled += PlayerMovement;
+
+        camTarget = GetComponent<CameraTarget>();
     }
 
     //NEED TO FIX
@@ -42,10 +46,15 @@ public class PlayerMovementModel : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+
+        Vector3 forwardDirection = camTarget.GetMyCamera().pivotX.forward * playerInput.y;
+        Vector3 sideDirection = camTarget.GetMyCamera().pivotX.right * playerInput.x;
+
+        Vector3 movementDirection = forwardDirection + sideDirection;
 
         //rb.AddTorque(new Vector3(playerInput.x, 0f, playerInput.y) * speed, ForceMode.Force);
-        rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed/4, ForceMode.Force);
+
+        rb.AddForce(movementDirection * speed/4, ForceMode.Force);
 
 
         //speed = 0;
