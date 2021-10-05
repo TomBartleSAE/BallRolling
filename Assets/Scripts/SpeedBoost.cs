@@ -33,13 +33,16 @@ public class SpeedBoost : MonoBehaviour
         rb.AddForce(forwardDirection * speed * boosting, ForceMode.Force);
         ball.ChangeSize(-decayRate * boosting);
 
-        float threshold = ball.absorbedDebris.Peek().GetSize();
-        healthLost += decayRate * boosting;
-
-        if (healthLost > threshold)
+        if (ball.absorbedDebris.Count > 0)
         {
-            ball.LoseDebris();
-            healthLost = 0f;
+            float threshold = ball.absorbedDebris.Peek().GetSize();
+            healthLost += decayRate * boosting;
+
+            if (healthLost > threshold)
+            {
+                ball.LoseDebris();
+                healthLost = 0f;
+            }
         }
     }
 
