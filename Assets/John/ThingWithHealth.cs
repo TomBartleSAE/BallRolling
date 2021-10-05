@@ -14,10 +14,11 @@ public class ThingWithHealth : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(KillObject());
+        //StartCoroutine(KillObject());
         //StartCoroutine(IncreaseHealth());
 
         //Invoke("InflictDamage", 5f);
+
     }
 
     void FixedUpdate()

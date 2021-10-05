@@ -46,6 +46,12 @@ public class HealthModel : MonoBehaviour
         }
     }
 
+    //GET HEALTH
+    public float GetHealth()
+    {
+        return myHealth;
+    }
+
 
     //INSPECTOR BUTTONS
     public void DeathButton()
