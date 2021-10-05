@@ -6,10 +6,18 @@ using UnityEngine;
 public class DebrisModel : MonoBehaviour
 {
     [SerializeField] private float size;
-
+    
     public float GetSize()
     {
         return size;
+    }
+    
+    // Prevents getting stuck when spawning inside ball
+    public IEnumerator DelayCollider()
+    {
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        GetComponent<Collider>().enabled = true;
     }
 
     public void Absorb()
