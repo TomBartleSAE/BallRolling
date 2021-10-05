@@ -21,9 +21,10 @@ public class RollingBallModel : MonoBehaviour
     {
         if (other.gameObject.GetComponentInParent<RollingBallModel>())
         {
+            rb.AddForce(other.GetContact(0).normal * other.gameObject.GetComponent<Rigidbody>().velocity.magnitude * 5f, ForceMode.Impulse);
             HitBall(other.gameObject);
         }
-        
+
         if (other.gameObject.GetComponentInParent<DebrisModel>())
         {
             absorbedDebris.Push(other.gameObject.GetComponent<DebrisModel>());
@@ -34,30 +35,25 @@ public class RollingBallModel : MonoBehaviour
 
     public void HitBall(GameObject otherBall)
     {
-        float myImpactForce = 0; // = rb.velocity.magnitude * health;
-        float otherImpactForce = 0; // = otherBall.GetComponent<Rigidbody>().velocity.magnitude * otherBall.GetComponent<Health>();
+        float impactMultiplier = 0.1f; // Scales how much damage is done when hitting another player
+        float myImpactForce = rb.velocity.magnitude * health.GetHealth() * impactMultiplier;
+        float otherImpactForce = otherBall.GetComponent<Rigidbody>().velocity.magnitude *
+                                 otherBall.GetComponent<HealthModel>().GetHealth() * impactMultiplier;
         float impactDifference = otherImpactForce - myImpactForce;
         
         if (impactDifference > 0)
         {
-            // reduce health
-            // reduce ball size
-
             float totalDebris = 0f;
             for (int i = absorbedDebris.Count; i > 0; i--)
             {
-                DebrisModel lostDebris = absorbedDebris.Pop();
-                lostDebris.transform.position = transform.position;
-                StartCoroutine(lostDebris.DelayCollider());
-                lostDebris.gameObject.SetActive(true);
-                lostDebris.GetComponent<Rigidbody>().AddForce(Vector3.up * Random.Range(50f,100f));
-                
-                totalDebris += lostDebris.GetSize();
+                totalDebris += LoseDebris().GetSize();
                 if (totalDebris > impactDifference)
                 {
                     break;
                 }
             }
+
+            ChangeSize(-impactDifference);
         }
     }
 
@@ -66,5 +62,15 @@ public class RollingBallModel : MonoBehaviour
         GetComponent<HealthModel>().ChangeHealth(amount);
         rb.mass += amount;
         ballTransform.localScale += new Vector3(amount, amount, amount);
+    }
+
+    public DebrisModel LoseDebris()
+    {
+        DebrisModel lostDebris = absorbedDebris.Pop();
+        lostDebris.transform.position = transform.position;
+        StartCoroutine(lostDebris.DelayCollider());
+        lostDebris.gameObject.SetActive(true);
+        lostDebris.GetComponent<Rigidbody>().AddForce(Vector3.up * 500f);
+        return lostDebris;
     }
 }
