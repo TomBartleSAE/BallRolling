@@ -6,18 +6,17 @@ using UnityEngine.InputSystem;
 public class PlayerCameraModel : MonoBehaviour
 {
     public Transform target;
-    public Transform pivotX;
+    public Transform direction;
 
     float currentRotation = 0;
 
-    public Camera cam;
-    float zDefaultOffset;
+    public float zDefaultOffset = 3f;
+    public Vector3 yOffset;
 
     Rigidbody targetRB;
     bool targetHasRB = false;
 
-    [SerializeField]
-    float velocityMultiplier = 0.1f;
+    [SerializeField] float velocityMultiplier = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,41 +26,47 @@ public class PlayerCameraModel : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
-        zDefaultOffset = cam.transform.localPosition.z;
+        //zDefaultOffset = cam.transform.localPosition.z;
 
         TestActionMap testActionMap = new TestActionMap();
         testActionMap.InGame.Enable();
 
         testActionMap.InGame.LookDirection.performed += PlayerCamTest;
+        testActionMap.InGame.LookDirection.canceled += PlayerCamTest;
     }
 
-    
+
     void PlayerCamTest(InputAction.CallbackContext obj)
     {
         //Debug.Log(obj.ReadValue<Vector2>();
 
         //pivot.Rotate(new Vector3(obj.ReadValue<Vector2>().y, obj.ReadValue<Vector2>().x, 0)*0.1f);
 
-        currentRotation = -obj.ReadValue<Vector2>().y;
-        currentRotation = Mathf.Clamp(currentRotation, -90, 90);
-        pivotX.localEulerAngles += new Vector3(0, obj.ReadValue<Vector2>().x, 0) * 0.1f;
+        //currentRotation = -obj.ReadValue<Vector2>().y;
+        //currentRotation = Mathf.Clamp(currentRotation, -90, 90);
+        //pivotX.localEulerAngles += new Vector3(0, obj.ReadValue<Vector2>().x, 0) * 0.1f;
+
+        currentRotation = obj.ReadValue<Vector2>().x;
 
         //pivotY.localEulerAngles += new Vector3(currentRotation, 0, 0) * 0.1f;
     }
 
 
-    
-
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.position;
+        //transform.position = target.position;
 
+        transform.localEulerAngles += new Vector3(0f, currentRotation, 0f);
+        transform.position = target.position - transform.forward * zDefaultOffset + yOffset;
+
+        
         if(targetHasRB)
         {
             float targetVelocity = targetRB.velocity.magnitude * velocityMultiplier;
-            cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, cam.transform.localPosition.y, zDefaultOffset - targetVelocity);
+            transform.localPosition -= transform.forward * targetVelocity;
         }
+        
         //transform.LookAt(target);
 
 
@@ -72,7 +77,7 @@ public class PlayerCameraModel : MonoBehaviour
     //CHANGE CAMERA TARGET
     public void ChangeTarget(Transform newTarget)
     {
-        if(newTarget.GetComponent<Rigidbody>() != null)
+        if (newTarget.GetComponent<Rigidbody>() != null)
         {
             targetHasRB = true;
             targetRB = newTarget.GetComponent<Rigidbody>();

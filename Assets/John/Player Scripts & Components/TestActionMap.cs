@@ -190,7 +190,7 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""96560b85-9d2d-44ff-b8ee-d27bd67ea9d0"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
@@ -201,7 +201,7 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""736eb62a-c425-46fd-9a9a-e9352a18ad11"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
@@ -212,7 +212,7 @@ public class @TestActionMap : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""6e5b0d63-e1c1-4118-8120-8a6f8528f54c"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",

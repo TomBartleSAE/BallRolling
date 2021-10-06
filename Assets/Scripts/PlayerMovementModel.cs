@@ -57,8 +57,8 @@ public class PlayerMovementModel : MonoBehaviour
     void FixedUpdate()
     {
 
-        Vector3 forwardDirection = camTarget.GetMyCamera().pivotX.forward * playerInput.y;
-        Vector3 sideDirection = camTarget.GetMyCamera().pivotX.right * playerInput.x;
+        Vector3 forwardDirection = camTarget.GetMyCamera().direction.forward * playerInput.y;
+        Vector3 sideDirection = camTarget.GetMyCamera().direction.right * playerInput.x;
 
         Vector3 movementDirection = forwardDirection + sideDirection;
 
