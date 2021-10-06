@@ -7,7 +7,6 @@ using UnityEditor;
 
 public class Health_Editor : Editor
 {
-	public float dps;
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
