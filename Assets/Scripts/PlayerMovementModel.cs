@@ -9,9 +9,15 @@ public class PlayerMovementModel : MonoBehaviour
     Vector2 playerInput;
 
     CameraTarget camTarget;
+    HealthModel myHealth;
 
     [SerializeField]
     float speed;
+
+    private void Awake()
+    {
+        myHealth = GetComponent<HealthModel>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +34,16 @@ public class PlayerMovementModel : MonoBehaviour
     //NEED TO FIX
     void PlayerMovement(InputAction.CallbackContext obj)
     {
-        Debug.Log(obj.ReadValue<Vector2>());
         playerInput = obj.ReadValue<Vector2>();
         //speed = 50;
 
         //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
         //rb.MovePosition(rb.position * playerInput * speed * Time.fixedDeltaTime);
+    }
+
+    private void OnEnable()
+    {
+        myHealth.DeathEvent += Die;
     }
 
     void Update()
@@ -61,5 +71,11 @@ public class PlayerMovementModel : MonoBehaviour
 
         //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
 
+    }
+
+    void Die()
+    {
+        gameObject.SetActive(false);
+        Debug.Log("YOU DIED");
     }
 }

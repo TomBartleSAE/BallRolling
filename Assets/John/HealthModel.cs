@@ -9,6 +9,8 @@ public class HealthModel : MonoBehaviour
     float myHealth;
     [SerializeField]
     float maxHealth;
+    [SerializeField]
+    float deathThreshold;
 
     //DEATH EVENT
     public delegate void DeathSignature();
@@ -34,7 +36,7 @@ public class HealthModel : MonoBehaviour
         myHealth += amount;
 
         //If health ever drops to 0 or below fire off DeathEvent
-        if(myHealth <= 0)
+        if(myHealth <= deathThreshold)
         {
             DeathFunction();
         }

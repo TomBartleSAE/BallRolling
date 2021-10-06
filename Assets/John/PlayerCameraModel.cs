@@ -24,6 +24,9 @@ public class PlayerCameraModel : MonoBehaviour
     {
         ChangeTarget(target);
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
         zDefaultOffset = cam.transform.localPosition.z;
 
         TestActionMap testActionMap = new TestActionMap();
