@@ -13,14 +13,16 @@ public class NewStateManagerEditor : Editor
 
         if (GUILayout.Button("Change State"))
         {
+            //SHORT VERSION
+
             //Initializing variable
             NewStateManager myStateManager = target as NewStateManager;
-
             myStateManager?.ChangeState(myStateManager.nextStateTest);
 
 
             //LONG VERSION
-                //(target as NewStateManager)?.ChangeState((target as NewStateManager).nextStateTest);
+
+            //(target as NewStateManager)?.ChangeState((target as NewStateManager).nextStateTest);
         }
     }
 }
