@@ -29,9 +29,12 @@ public class SpeedBoost : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 forwardDirection = camTarget.GetMyCamera().direction.forward;
-        rb.AddForce(forwardDirection * speed * boosting, ForceMode.Force);
-        ball.ChangeSize(-decayRate * boosting);
+        if (boosting > 0)
+        {
+            Vector3 forwardDirection = camTarget.GetMyCamera().direction.forward;
+            rb.AddForce(forwardDirection * speed * boosting, ForceMode.Force);
+            ball.ChangeSize(-decayRate * boosting);
+        }
 
         if (ball.absorbedDebris.Count > 0)
         {
