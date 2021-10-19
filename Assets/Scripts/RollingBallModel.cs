@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class RollingBallModel : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class RollingBallModel : MonoBehaviour
     private HealthModel health;
 
     public Stack<DebrisModel> absorbedDebris = new Stack<DebrisModel>();
+
+    //DoTween Anim Timer
+    [SerializeField]
+    float duration;
 
     private void Awake()
     {
@@ -27,10 +32,14 @@ public class RollingBallModel : MonoBehaviour
 
         if (other.gameObject.GetComponentInParent<DebrisModel>())
         {
+            Vector3 currentSize = ballTransform.localScale;
             absorbedDebris.Push(other.gameObject.GetComponent<DebrisModel>());
             ChangeSize(other.gameObject.GetComponentInParent<DebrisModel>().GetSize());
+            ballTransform.localScale = currentSize;
+            DOTween.To(GetLocalScale, Setter, health.GetHealth(), duration).SetEase(Ease.OutBounce);
             other.gameObject.GetComponentInParent<HealthModel>().ChangeHealth(-1f);
         }
+
     }
 
     public void HitBall(GameObject otherBall)
@@ -61,6 +70,7 @@ public class RollingBallModel : MonoBehaviour
     {
         GetComponent<HealthModel>().ChangeHealth(amount);
         rb.mass += amount;
+
         ballTransform.localScale += new Vector3(amount, amount, amount);
     }
 
@@ -72,5 +82,15 @@ public class RollingBallModel : MonoBehaviour
         lostDebris.gameObject.SetActive(true);
         lostDebris.GetComponent<Rigidbody>().AddForce(Vector3.up * 500f);
         return lostDebris;
+    }
+
+    float GetLocalScale()
+    {
+        return ballTransform.localScale.x;
+    }
+
+    void Setter(float newSize)
+    {
+        ballTransform.localScale = new Vector3(newSize, newSize, newSize);
     }
 }
