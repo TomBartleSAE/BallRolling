@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(RootObject))]
+[CustomEditor(typeof(GameManager), true)]
 
 public class StateBaseEditor : Editor
 {
@@ -11,14 +11,16 @@ public class StateBaseEditor : Editor
     {
         base.OnInspectorGUI();
 
-        if (GUILayout.Button("Second Test State"))
+        if (GUILayout.Button("InGameState"))
         {
-            (target as RootObject)?.GetComponent<StateManager>().ChangeState((target as RootObject).secondState);
+            GameManager gm = target as GameManager;
+            gm?.GetComponent<StateManager>().ChangeState(gm.inGameState);
         }
 
-        if (GUILayout.Button("Test State"))
+        if (GUILayout.Button("InMenuState"))
         {
-            (target as RootObject)?.GetComponent<StateManager>().ChangeState((target as RootObject).firstState);
+            GameManager gm = target as GameManager;
+            gm?.GetComponent<StateManager>().ChangeState(gm.inMenuState);
         }
     }
 }

@@ -6,6 +6,9 @@ public class StateManager : MonoBehaviour
 {
     public StateBase currentState;
 
+    //For Changing States Using Button
+    //public StateBase2 nextStateTest;
+
     private void Start()
     {
         currentState.Enter();
