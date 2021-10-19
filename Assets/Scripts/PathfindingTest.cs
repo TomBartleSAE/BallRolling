@@ -8,7 +8,7 @@ public class PathfindingTest : MonoBehaviour
 {
     public class Node
     {
-        public Vector2 coordinates;
+        public Vector2Int coordinates;
         public bool blocked;
         public int fCost;
         public int gCost;
@@ -16,21 +16,21 @@ public class PathfindingTest : MonoBehaviour
         public Node parent;
     }
 
-    public Vector2 gridSize;
+    public Vector2Int gridSize;
     public Node[,] gridNodes;
     public LayerMask obstacles;
 
     private List<Node> openNodes = new List<Node>();
     private List<Node> closedNodes = new List<Node>();
 
-    public Vector2 start, destination;
+    public Vector2Int start, destination;
 
     public List<Node> path = new List<Node>();
 
     private void Start()
     {
         CalculateGrid();
-        FindPath(start,destination);
+        FindPath(start, destination);
     }
 
     public void CalculateGrid()
@@ -42,7 +42,7 @@ public class PathfindingTest : MonoBehaviour
             for (int z = 0; z < gridSize.y; z++)
             {
                 gridNodes[x, z] = new Node(); // Nodes need to be initialised before you can set variables
-                gridNodes[x, z].coordinates = new Vector2(x, z);
+                gridNodes[x, z].coordinates = new Vector2Int(x, z);
 
                 if (Physics.CheckBox(new Vector3(x, 0, z), Vector3.one, Quaternion.identity, obstacles))
                 {
@@ -52,13 +52,13 @@ public class PathfindingTest : MonoBehaviour
         }
     }
 
-    public void FindPath(Vector2 start, Vector2 destination)
+    public void FindPath(Vector2Int start, Vector2Int destination)
     {
-        Node currentNode = gridNodes[(int) start.x, (int) start.y];
+        Node currentNode = gridNodes[start.x, start.y];
         openNodes.Add(currentNode);
-        
+
         // Loops until destination has been found
-        while (currentNode != gridNodes[(int) destination.x, (int) destination.y])
+        while (currentNode != gridNodes[destination.x, destination.y])
         {
             // Find neighbour with lowest f cost
             int lowestFCost = openNodes[0].fCost;
@@ -70,85 +70,70 @@ public class PathfindingTest : MonoBehaviour
                     currentNode = node;
                 }
             }
-            
+
             // Close new current node
             openNodes.Remove(currentNode);
             closedNodes.Add(currentNode);
 
-            if (currentNode == gridNodes[(int) destination.x, (int) destination.y])
+            if (currentNode == gridNodes[destination.x, destination.y])
             {
                 break;
             }
-            
+
             // Check all grid nodes +/- 1 in both directions (neighbours)
-            for (int i = (int)currentNode.coordinates.x - 1; i < currentNode.coordinates.x + 2; i++)
+            for (int i = currentNode.coordinates.x - 1; i < currentNode.coordinates.x + 2; i++)
             {
-                for (int j = (int)currentNode.coordinates.y - 1; j < currentNode.coordinates.y + 2; j++)
+                for (int j = currentNode.coordinates.y - 1; j < currentNode.coordinates.y + 2; j++)
                 {
-                    if (i > 0 && i < gridSize.x && j > 0 && j <  gridSize.y)
+                    if (i > 0 && i < gridSize.x && j > 0 && j < gridSize.y)
                     {
+                        Node neighbour = gridNodes[i, j];
                         // Ignore neighbour if blocked or closed
-                        if (gridNodes[i, j].blocked || closedNodes.Contains(gridNodes[i, j]))
+                        if (neighbour.blocked || closedNodes.Contains(neighbour))
                         {
                             continue;
                         }
-                        
-                        // TODO: Check if new path to neighbour is shorter
-                        if (!openNodes.Contains(gridNodes[i, j]))
+
+                        int neighbourDistance = currentNode.gCost +
+                                                CalculateDistance(currentNode.coordinates, neighbour.coordinates);
+
+                        if (neighbourDistance < neighbour.gCost || !openNodes.Contains(gridNodes[i, j]))
                         {
-                            CalculateCosts(gridNodes[i,j].coordinates,destination);
-                            gridNodes[i, j].parent = currentNode;
-                            if (!openNodes.Contains(gridNodes[i, j]))
+                            neighbour.gCost = neighbourDistance;
+                            neighbour.hCost = CalculateDistance(neighbour.coordinates, destination);
+                            neighbour.fCost = neighbour.gCost + neighbour.hCost;
+                            
+                            neighbour.parent = currentNode;
+                            if (!openNodes.Contains(neighbour))
                             {
-                                openNodes.Add(gridNodes[i, j]);
+                                openNodes.Add(neighbour);
                             }
                         }
                     }
                 }
             }
         }
-        
+
         path.Clear();
-        
+
         // Generate path based on best nodes' parents
-        while (currentNode != gridNodes[(int) start.x, (int) start.y])
+        while (currentNode != gridNodes[start.x, start.y])
         {
             path.Add(currentNode);
             currentNode = currentNode.parent;
         }
     }
 
-    public void CalculateCosts(Vector2 point, Vector2 destination)
+    public int CalculateDistance(Vector2Int start, Vector2Int end)
     {
-        Node node = gridNodes[(int)point.x,(int)point.y];
-        if (!node.blocked)
+        Vector2Int distance = end - start;
+        distance = new Vector2Int(Mathf.Abs(distance.x), Mathf.Abs(distance.y)); // This removes any negative numbers
+        if (distance.x > distance.y)
         {
-            node.gCost = Mathf.RoundToInt(Vector2.Distance(point, node.coordinates) * 10f);
-
-            Vector2 distance = destination - node.coordinates;
-            distance = new Vector2(Mathf.Abs(distance.x), Mathf.Abs(distance.y)); // This removes any negative numbers
-            // HACK? Surely there's a better way to find the distance to the end
-            while (distance != Vector2.zero)
-            {
-                if (distance.x > 0 && distance.y > 0)
-                {
-                    node.hCost += 14;
-                    distance -= Vector2.one;
-                }
-                else if (distance.x > 0)
-                {
-                    node.hCost += 10;
-                    distance -= new Vector2(1, 0);
-                }
-                else if (distance.y > 0)
-                {
-                    node.hCost += 10;
-                    distance -= new Vector2(0, 1);
-                }
-            }
-
-            node.fCost = node.gCost + node.hCost;
+            return distance.y * 14 + 10 * (distance.x - distance.y);
         }
+
+        return distance.x * 14 + 10 * (distance.y - distance.x);
     }
 
     public void OnDrawGizmos()
