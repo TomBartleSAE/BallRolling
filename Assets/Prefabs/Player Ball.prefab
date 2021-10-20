@@ -66,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1946605408}
   ballTransform: {fileID: 682025496193055089}
+  duration: 1
 --- !u!54 &1946605408
 Rigidbody:
   m_ObjectHideFlags: 0
