@@ -9,10 +9,10 @@ public class ActionTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TomActionTest actions = new TomActionTest();
-        actions.InGame.Enable();
+        //TomActionTest actions = new TomActionTest();
+        //actions.InGame.Enable();
 
-        actions.InGame.Movement.performed += MoveOnPerformed;
+        //actions.InGame.Movement.performed += MoveOnPerformed;
     }
 
     private void MoveOnPerformed(InputAction.CallbackContext obj)
