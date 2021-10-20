@@ -27,7 +27,7 @@ public class PathfindingTest : MonoBehaviour
 
     public List<Node> path = new List<Node>();
 
-    private void Start()
+    private void Awake()
     {
         CalculateGrid();
         FindPath(start, destination);
@@ -159,7 +159,7 @@ public class PathfindingTest : MonoBehaviour
                             Gizmos.color = Color.green;
                         }
 
-                        Gizmos.DrawCube(new Vector3(x, 0, z), Vector3.one);
+                        Gizmos.DrawCube(new Vector3(x, 0.5f, z), Vector3.one);
                     }
                 }
             }
