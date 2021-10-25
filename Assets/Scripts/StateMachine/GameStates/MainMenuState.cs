@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuState : StateBase
 {
-    TestActionMap testActionMap;
+    PlayerActionMap playerActionMap;
 
     public override void Enter()
     {
         //base.Enter();
-        testActionMap = new TestActionMap();
-        testActionMap.InMenu.Enable();
+        playerActionMap = new PlayerActionMap();
+        playerActionMap.InMenu.Enable();
 
         Debug.Log("Entered Menu State");
 
@@ -35,7 +35,7 @@ public class MainMenuState : StateBase
     {
         //base.Exit();
 
-        testActionMap.InMenu.Disable();
+        playerActionMap.InMenu.Disable();
 
         Debug.Log("Exiting Menu State");
     }

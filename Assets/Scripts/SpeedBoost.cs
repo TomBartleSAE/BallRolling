@@ -19,12 +19,12 @@ public class SpeedBoost : MonoBehaviour
         camTarget = GetComponent<CameraTarget>();
         rb = GetComponent<Rigidbody>();
         ball = GetComponent<RollingBallModel>();
-        
-        TestActionMap testActionMap = new TestActionMap();
-        testActionMap.InGame.Enable();
-        
-        testActionMap.InGame.Ability.performed += Activate;
-        testActionMap.InGame.Ability.canceled += Activate;
+
+        PlayerActionMap playerActionMap = new PlayerActionMap();
+        playerActionMap.InGame.Enable();
+
+        playerActionMap.InGame.Ability.performed += Activate;
+        playerActionMap.InGame.Ability.canceled += Activate;
     }
 
     private void FixedUpdate()

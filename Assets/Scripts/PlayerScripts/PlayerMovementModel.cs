@@ -22,11 +22,11 @@ public class PlayerMovementModel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TestActionMap testActionMap = new TestActionMap();
-        testActionMap.InGame.Enable();
+        PlayerActionMap playerActionMap = new PlayerActionMap();
+        playerActionMap.InGame.Enable();
 
-        testActionMap.InGame.Movement.performed += PlayerMovement;
-        testActionMap.InGame.Movement.canceled += PlayerMovement;
+        playerActionMap.InGame.Movement.performed += PlayerMovement;
+        playerActionMap.InGame.Movement.canceled += PlayerMovement;
 
         camTarget = GetComponent<CameraTarget>();
     }

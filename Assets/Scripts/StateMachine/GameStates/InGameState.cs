@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class InGameState : StateBase
 {
-    TestActionMap testActionMap;
+    PlayerActionMap playerActionMap;
 
     public override void Enter()
     {
         //base.Enter();
-        testActionMap = new TestActionMap();
-        testActionMap.InGame.Enable();
+        playerActionMap = new PlayerActionMap();
+        playerActionMap.InGame.Enable();
 
         Debug.Log("Entered Game State");
 
@@ -39,7 +39,7 @@ public class InGameState : StateBase
     {
         //base.Exit();
 
-        testActionMap.InGame.Disable();
+        playerActionMap.InGame.Disable();
 
         Debug.Log("Exiting Game State");
     }

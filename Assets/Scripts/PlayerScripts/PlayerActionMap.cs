@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/John/Player Scripts & Components/TestActionMap.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/John/Player Scripts & Components/PlayerActionMap.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @TestActionMap : IInputActionCollection, IDisposable
+public class @PlayerActionMap : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @TestActionMap()
+    public @PlayerActionMap()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""TestActionMap"",
+    ""name"": ""PlayerActionMap"",
     ""maps"": [
         {
             ""name"": ""InGame"",
@@ -364,8 +364,8 @@ public class @TestActionMap : IInputActionCollection, IDisposable
     private readonly InputAction m_InGame_Ability;
     public struct InGameActions
     {
-        private @TestActionMap m_Wrapper;
-        public InGameActions(@TestActionMap wrapper) { m_Wrapper = wrapper; }
+        private @PlayerActionMap m_Wrapper;
+        public InGameActions(@PlayerActionMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InGame_Movement;
         public InputAction @LookDirection => m_Wrapper.m_InGame_LookDirection;
         public InputAction @Ability => m_Wrapper.m_InGame_Ability;
@@ -411,8 +411,8 @@ public class @TestActionMap : IInputActionCollection, IDisposable
     private readonly InputAction m_InMenu_Newaction;
     public struct InMenuActions
     {
-        private @TestActionMap m_Wrapper;
-        public InMenuActions(@TestActionMap wrapper) { m_Wrapper = wrapper; }
+        private @PlayerActionMap m_Wrapper;
+        public InMenuActions(@PlayerActionMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Newaction => m_Wrapper.m_InMenu_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_InMenu; }
         public void Enable() { Get().Enable(); }
