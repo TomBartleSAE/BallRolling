@@ -9,9 +9,6 @@ public class DebrisSpawner : MonoBehaviour
     public Vector2Int xRange = new Vector2Int(0, 10);
     public Vector2Int zRange = new Vector2Int(0, 10);
 
-    //public int width = 100;
-    //public int height = 100;
-
     public int scale = 5;
 
     public GameObject[] objectsToSpawn;
@@ -33,23 +30,9 @@ public class DebrisSpawner : MonoBehaviour
 
                 if(perlinValue > spawnThreshold)
                 {
-
-                    //if (Random.Range(0, 20) == 1)
-                    {
-                        //Choosing an object to spawn from the list of objects
-                        GameObject randomObject = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
-
-
-                        GameObject newObject = PrefabUtility.InstantiatePrefab(randomObject) as GameObject;
-                        newObject.transform.position = new Vector3(x, spawnHeight, y);
-
-
-                        //Instantiate(newObject, new Vector3(x, spawnHeight, y), Quaternion.identity);
-                    }
-                    
-
-                    //Instantiate(cube, new Vector3(x, perlinValue, y), Quaternion.identity);
-
+                    GameObject randomObject = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
+                    GameObject newObject = PrefabUtility.InstantiatePrefab(randomObject) as GameObject;
+                    newObject.transform.position = new Vector3(x, spawnHeight, y);
                 }
             }
         }
