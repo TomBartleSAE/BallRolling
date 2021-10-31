@@ -6,8 +6,8 @@ using UnityEngine;
 public class FollowPath : MonoBehaviour
 {
     private TurnToward turn;
-    public PathfindingTest pathfinding;
-    private PathfindingTest.Node targetNode;
+    public PathfindingAgent pathfinding;
+    private PathfindingGrid.Node targetNode;
     public float followRange = 1f;
 
     public void Start()
