@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class FlipperModel : MonoBehaviour
+public class HammerModel : MonoBehaviour
 {
     [SerializeField]
     float reachTarget;
@@ -19,7 +19,7 @@ public class FlipperModel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LaunchFlipper();
+        SwingRight();
     }
 
     float GetPosition()
@@ -27,19 +27,19 @@ public class FlipperModel : MonoBehaviour
         return rotation;
     }
 
-    void SetLaunchPosition(float newPosition)
+    void SetSwingPosition(float newPosition)
     {
         rotation = newPosition;
-        transform.localRotation = Quaternion.Euler(0, newPosition, 0);
+        transform.localRotation = Quaternion.Euler(0, 0, newPosition);
     }
 
-    void LaunchFlipper()
+    void SwingRight()
     {
-        DOTween.To(GetPosition, SetLaunchPosition, reachTarget, accelerationSpeed).SetEase(Ease.OutElastic).OnComplete(ResetFlipper);
+        DOTween.To(GetPosition, SetSwingPosition, reachTarget, accelerationSpeed).SetEase(Ease.InOutBack).OnComplete(SwingLeft);
     }
 
-    void ResetFlipper()
+    void SwingLeft()
     {
-        DOTween.To(GetPosition, SetLaunchPosition, resetTarget, resetSpeed).OnComplete(LaunchFlipper);
+        DOTween.To(GetPosition, SetSwingPosition, resetTarget, resetSpeed).SetEase(Ease.InOutBack).OnComplete(SwingRight);
     }
 }

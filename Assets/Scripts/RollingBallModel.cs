@@ -36,7 +36,7 @@ public class RollingBallModel : MonoBehaviour
             absorbedDebris.Push(other.gameObject.GetComponent<DebrisModel>());
             ChangeSize(other.gameObject.GetComponentInParent<DebrisModel>().GetSize());
             ballTransform.localScale = currentSize;
-            DOTween.To(GetLocalScale, Setter, health.GetHealth(), duration).SetEase(Ease.OutBounce);
+            DOTween.To(GetLocalScale, SetNewSize, health.GetHealth(), duration).SetEase(Ease.OutBounce);
             other.gameObject.GetComponentInParent<HealthModel>().ChangeHealth(-1f);
         }
 
@@ -89,7 +89,7 @@ public class RollingBallModel : MonoBehaviour
         return ballTransform.localScale.x;
     }
 
-    void Setter(float newSize)
+    void SetNewSize(float newSize)
     {
         ballTransform.localScale = new Vector3(newSize, newSize, newSize);
     }

@@ -18,8 +18,8 @@ public class SpinningObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, (rotateSpeed*2) * Time.deltaTime);
 
-        rb.AddTorque(Vector3.up * rotateSpeed, ForceMode.VelocityChange);
+        //rb.AddTorque(Vector3.up * rotateSpeed, ForceMode.VelocityChange);
     }
 }
