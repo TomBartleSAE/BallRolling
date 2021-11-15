@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/John/Player Scripts & Components/PlayerActionMap.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/PlayerScripts/PlayerActionMap.inputactions'
 
 using System;
 using System.Collections;
@@ -249,9 +249,17 @@ public class @PlayerActionMap : IInputActionCollection, IDisposable
             ""id"": ""359df84c-0240-4720-8f6a-417631dd4d82"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""Navigate"",
+                    ""type"": ""Value"",
                     ""id"": ""93a164d4-5d81-4d10-95ea-dcab181bf9ff"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c1d43e6-85e0-4d15-8183-de85ca078eaf"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -259,13 +267,134 @@ public class @PlayerActionMap : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""a9086ccc-b825-447c-b63f-a13d426c4dd5"",
-                    ""path"": """",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""56497d3c-a21b-4606-b946-859266eec527"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a45dbc60-7c96-44e0-8c34-5062cda8897a"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f9fe0dc6-ea86-4a72-a6c5-e0934164392b"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7da4ae85-3284-4f00-b73f-ec0125e3b839"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a6d50bf3-d293-4fde-b7a5-e9be95c4d767"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""79e28822-aae9-4c8e-aa56-77743007a662"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""df32966b-c999-49ef-8a77-3dd01cf9543a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6b4e7c20-564b-44f8-90f6-2c93083962a8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f1b03b78-ebaa-4d26-b2d6-96edbc815e77"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""64cb3572-c62e-460e-8388-454f800383a1"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c185f110-524f-4d2a-8fe6-ce6d23a4c4e6"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1df07cc-2103-4932-9405-ba18becb15f4"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -309,7 +438,8 @@ public class @PlayerActionMap : IInputActionCollection, IDisposable
         m_InGame_Ability = m_InGame.FindAction("Ability", throwIfNotFound: true);
         // InMenu
         m_InMenu = asset.FindActionMap("InMenu", throwIfNotFound: true);
-        m_InMenu_Newaction = m_InMenu.FindAction("New action", throwIfNotFound: true);
+        m_InMenu_Navigate = m_InMenu.FindAction("Navigate", throwIfNotFound: true);
+        m_InMenu_Select = m_InMenu.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -408,12 +538,14 @@ public class @PlayerActionMap : IInputActionCollection, IDisposable
     // InMenu
     private readonly InputActionMap m_InMenu;
     private IInMenuActions m_InMenuActionsCallbackInterface;
-    private readonly InputAction m_InMenu_Newaction;
+    private readonly InputAction m_InMenu_Navigate;
+    private readonly InputAction m_InMenu_Select;
     public struct InMenuActions
     {
         private @PlayerActionMap m_Wrapper;
         public InMenuActions(@PlayerActionMap wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_InMenu_Newaction;
+        public InputAction @Navigate => m_Wrapper.m_InMenu_Navigate;
+        public InputAction @Select => m_Wrapper.m_InMenu_Select;
         public InputActionMap Get() { return m_Wrapper.m_InMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -423,16 +555,22 @@ public class @PlayerActionMap : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_InMenuActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_InMenuActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_InMenuActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_InMenuActionsCallbackInterface.OnNewaction;
+                @Navigate.started -= m_Wrapper.m_InMenuActionsCallbackInterface.OnNavigate;
+                @Navigate.performed -= m_Wrapper.m_InMenuActionsCallbackInterface.OnNavigate;
+                @Navigate.canceled -= m_Wrapper.m_InMenuActionsCallbackInterface.OnNavigate;
+                @Select.started -= m_Wrapper.m_InMenuActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_InMenuActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_InMenuActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_InMenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Navigate.started += instance.OnNavigate;
+                @Navigate.performed += instance.OnNavigate;
+                @Navigate.canceled += instance.OnNavigate;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -463,6 +601,7 @@ public class @PlayerActionMap : IInputActionCollection, IDisposable
     }
     public interface IInMenuActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnNavigate(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

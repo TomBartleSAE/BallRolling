@@ -28,15 +28,15 @@ public class PlayerCameraModel : MonoBehaviour
 
         //zDefaultOffset = cam.transform.localPosition.z;
 
-        PlayerActionMap playerActionMap = new PlayerActionMap();
-        playerActionMap.InGame.Enable();
+        //PlayerActionMap playerActionMap = new PlayerActionMap();
+        //playerActionMap.InGame.Enable();
 
-        playerActionMap.InGame.LookDirection.performed += PlayerCamTest;
-        playerActionMap.InGame.LookDirection.canceled += PlayerCamTest;
+        //playerActionMap.InGame.LookDirection.performed += PlayerCamTest;
+        //playerActionMap.InGame.LookDirection.canceled += PlayerCamTest;
     }
 
 
-    void PlayerCamTest(InputAction.CallbackContext obj)
+    public void OnLookDirection(InputAction.CallbackContext obj)
     {
         //Debug.Log(obj.ReadValue<Vector2>();
 

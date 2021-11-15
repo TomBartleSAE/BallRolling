@@ -16,6 +16,6 @@ public class PlayerManager : MonoBehaviour
 
     void PlayerJoined(PlayerInput newPlayer)
     {
-        newPlayer.camera.GetComponent<PlayerCameraModel>().ChangeTarget(newPlayer.transform);
+        Debug.Log("Player Joined");
     }
 }

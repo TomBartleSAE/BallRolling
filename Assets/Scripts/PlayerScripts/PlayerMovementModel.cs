@@ -22,17 +22,17 @@ public class PlayerMovementModel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerActionMap playerActionMap = new PlayerActionMap();
-        playerActionMap.InGame.Enable();
+        //PlayerActionMap playerActionMap = new PlayerActionMap();
+        //playerActionMap.InGame.Enable();
 
-        playerActionMap.InGame.Movement.performed += PlayerMovement;
-        playerActionMap.InGame.Movement.canceled += PlayerMovement;
+        //playerActionMap.InGame.Movement.performed += PlayerMovement;
+        //playerActionMap.InGame.Movement.canceled += PlayerMovement;
 
         camTarget = GetComponent<CameraTarget>();
     }
 
     //NEED TO FIX
-    void PlayerMovement(InputAction.CallbackContext obj)
+    public void OnMovement(InputAction.CallbackContext obj)
     {
         playerInput = obj.ReadValue<Vector2>();
         //speed = 50;
