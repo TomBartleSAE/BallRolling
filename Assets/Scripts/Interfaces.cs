@@ -5,4 +5,10 @@ using UnityEngine;
 public interface ITweenable
 {
     void PlayTween();
+    void ResetTween();
+}
+
+public interface IInteractable
+{
+    void Interact();
 }

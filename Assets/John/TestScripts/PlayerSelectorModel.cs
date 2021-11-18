@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System;
 
-//TODO: Rename Script to SelectorManager
-public class LevelSelectManager : MonoBehaviour
+public class PlayerSelectorModel : MonoBehaviour
 {
     [SerializeField]
     GameObject selector;
@@ -29,6 +28,22 @@ public class LevelSelectManager : MonoBehaviour
 
         playerActionMap.InMenu.Navigate.performed += SelectorMovement;
         playerActionMap.InMenu.Navigate.canceled += SelectorMovement;
+
+        playerActionMap.InMenu.Select.performed += Selected;
+    }
+
+    void Selected(InputAction.CallbackContext callback)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    private void LateUpdate()
+    {
+        //Clamp selector in canvas 
+        Vector3 viewPos = transform.localPosition;
+        viewPos.x = Mathf.Clamp(viewPos.x, -907, 901);
+        viewPos.y = Mathf.Clamp(viewPos.y, -480, 480);
+        transform.localPosition = viewPos;
     }
 
     void SelectorMovement(InputAction.CallbackContext value)
@@ -56,6 +71,15 @@ public class LevelSelectManager : MonoBehaviour
         if(collision.GetComponent<ITweenable>() != null)
         {
             collision.GetComponent<ITweenable>().PlayTween();
+        }
+    }
+
+    //Reset Tween Objects
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<ITweenable>() != null)
+        {
+            collision.GetComponent<ITweenable>().ResetTween();
         }
     }
 }
