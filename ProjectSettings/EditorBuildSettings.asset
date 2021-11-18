@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: ee0a0d3b341869849b1f4a1b58cc9851
   - enabled: 1
+    path: Assets/Scenes/KingOfTheHill.unity
+    guid: b5de23f6e3a21ab44a28e8870339539d
+  - enabled: 1
+    path: Assets/Scenes/HammerMayhem.unity
+    guid: 221a8e2b7b12c86468da8f82e41200f9
+  - enabled: 1
     path: Assets/Scenes/MapPrototype.unity
     guid: 7ba6a2aeb273b3c48b613a40a66c8d31
   m_configObjects: {}
