@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITweenable
+public interface ISelectable
 {
     void PlayTween();
     void ResetTween();
-}
-
-public interface IInteractable
-{
-    void Interact();
+    void Interaction();
 }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
-public class LevelReference : MonoBehaviour, ITweenable
+public class LevelReference : MonoBehaviour, ISelectable
 {
     //public because we need to reference this from outside of the script to load the level
     public string levelID;
@@ -22,5 +23,10 @@ public class LevelReference : MonoBehaviour, ITweenable
     public void ResetTween()
     {
         transform.DOScale(1f, scaleTime);
+    }
+
+    public void Interaction()
+    {
+        SceneManager.LoadScene(levelID);
     }
 }

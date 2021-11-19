@@ -16,7 +16,9 @@ public class PlayerSelectorModel : MonoBehaviour
     [SerializeField]
     int speed = 5;
 
+    LevelReference levelReference;
     string level;
+    ISelectable selectable;
 
     public event Action<string> currentLevelEvent;
 
@@ -34,12 +36,14 @@ public class PlayerSelectorModel : MonoBehaviour
 
     void Selected(InputAction.CallbackContext callback)
     {
-        SceneManager.LoadScene(level);
+        selectable.Interaction();
     }
 
     private void LateUpdate()
     {
-        //Clamp selector in canvas 
+        //TODO: Fix this to not be hardcoded
+
+        //Clamp selector in canvas bounds
         Vector3 viewPos = transform.localPosition;
         viewPos.x = Mathf.Clamp(viewPos.x, -907, 901);
         viewPos.y = Mathf.Clamp(viewPos.y, -480, 480);
@@ -58,28 +62,27 @@ public class PlayerSelectorModel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        level = collision.GetComponent<LevelReference>().levelID;
-        if(level != null)
-        {
-            Debug.Log(level);
-
-            //Can Launch level directly from here or can send the level info to a manager? SceneManager.LoadScene(level) etc
-            currentLevelEvent?.Invoke(level);
-        }
+        levelReference = collision.GetComponent<LevelReference>();
+        selectable = collision.GetComponent<ISelectable>();
 
         //Play Tween Animation if object is tweenable
-        if(collision.GetComponent<ITweenable>() != null)
+        if(selectable != null)
         {
-            collision.GetComponent<ITweenable>().PlayTween();
+            selectable.PlayTween();
+        }
+
+        if(levelReference != null)
+        {
+            level = levelReference.levelID;
         }
     }
 
     //Reset Tween Objects
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<ITweenable>() != null)
+        if (collision.GetComponent<ISelectable>() != null)
         {
-            collision.GetComponent<ITweenable>().ResetTween();
+            collision.GetComponent<ISelectable>().ResetTween();
         }
     }
 }
