@@ -47,6 +47,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2170954710997676273}
+    - target: {fileID: 1898256605225841055, guid: 8c3a67a77a297a94ca9422a7552c3ae7, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898256605225841055, guid: 8c3a67a77a297a94ca9422a7552c3ae7, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1898256605225841056, guid: 8c3a67a77a297a94ca9422a7552c3ae7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -153,6 +161,18 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1946605408, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946605408, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946605409, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: myHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 682025495192012836, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -204,6 +224,22 @@ PrefabInstance:
     - target: {fileID: 682025495192012837, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 682025496193055089, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 682025496193055089, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 682025496193055089, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202565827335979409, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
+      propertyPath: speed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd4a14472c3293544b4d1fbdb66ed379, type: 3}
