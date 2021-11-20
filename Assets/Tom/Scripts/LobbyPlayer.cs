@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class LobbyPlayer : MonoBehaviour
     public Material skin;
     private int skinIndex;
     public Material[] allSkins;
-    
+
     // Function to be called when player presses left/right in lobby
     // Used to select skin for player model in-game
     public void OnNavigate(InputAction.CallbackContext obj)
@@ -31,6 +32,6 @@ public class LobbyPlayer : MonoBehaviour
         }
 
         skin = allSkins[skinIndex];
-        menu.SetSkin(skin);
+        menu?.SetSkin(skin);
     }
 }

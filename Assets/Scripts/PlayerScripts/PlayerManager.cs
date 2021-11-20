@@ -6,16 +6,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
+    public List<PlayerInput> players;
+    
     private PlayerInputManager inputManager;
 
-    private void Start()
+    private void Awake()
     {
         inputManager = GetComponent<PlayerInputManager>();
         inputManager.onPlayerJoined += PlayerJoined;
+        DontDestroyOnLoad(this);
     }
 
     void PlayerJoined(PlayerInput newPlayer)
     {
-        Debug.Log("Player Joined");
+        players.Add(newPlayer);
     }
 }
