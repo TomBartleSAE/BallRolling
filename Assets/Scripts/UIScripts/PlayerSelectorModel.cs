@@ -14,7 +14,7 @@ public class PlayerSelectorModel : MonoBehaviour
     public Rigidbody2D rb;
 
     [SerializeField]
-    int speed = 5;
+    float speed = 0.2f;
 
     ISelectable selectable;
 
@@ -57,7 +57,7 @@ public class PlayerSelectorModel : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(playerInput * speed, ForceMode2D.Force);
+        rb.AddForce(playerInput * speed/4, ForceMode2D.Force);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
