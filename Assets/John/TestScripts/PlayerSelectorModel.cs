@@ -16,11 +16,7 @@ public class PlayerSelectorModel : MonoBehaviour
     [SerializeField]
     int speed = 5;
 
-    LevelReference levelReference;
-    string level;
     ISelectable selectable;
-
-    public event Action<string> currentLevelEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +30,13 @@ public class PlayerSelectorModel : MonoBehaviour
         playerActionMap.InMenu.Select.performed += Selected;
     }
 
+    //If a selectable is selected, call its interaction function
     void Selected(InputAction.CallbackContext callback)
     {
-        selectable.Interaction();
+        if(selectable != null)
+        {
+            selectable.Interaction();
+        }
     }
 
     private void LateUpdate()
@@ -62,27 +62,28 @@ public class PlayerSelectorModel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        levelReference = collision.GetComponent<LevelReference>();
         selectable = collision.GetComponent<ISelectable>();
 
-        //Play Tween Animation if object is tweenable
         if(selectable != null)
         {
             selectable.PlayTween();
         }
-
-        if(levelReference != null)
-        {
-            level = levelReference.levelID;
-        }
     }
 
-    //Reset Tween Objects
+    //Reset Tween
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.GetComponent<ISelectable>() != null)
         {
             collision.GetComponent<ISelectable>().ResetTween();
         }
+
+        selectable = null;
+    }
+
+    //Update selectable to always be the current selectable the player is hovering over - this is because we are setting selectable to be null on TriggerExit which overrides TriggerEnters declaration
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        selectable = collision.GetComponent<ISelectable>();
     }
 }

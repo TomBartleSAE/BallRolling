@@ -6,13 +6,14 @@ using DG.Tweening;
 public class BackButtonModel : MonoBehaviour, ISelectable
 {
     [Header("Menu References - Does not need a previous menu")]
-    public GameObject myMenu;
-    public GameObject previousMenu;
+    [SerializeField]
+    GameObject myMenu;
+    [SerializeField]
+    GameObject previousMenu;
 
     [Header("Tween Values")]
     [SerializeField]
     float scaleSize = 1.2f;
-
     [SerializeField]
     float scaleTime = 0.25f;
 
