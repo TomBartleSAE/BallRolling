@@ -30,9 +30,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-   public void LoadLevel(string level)
-   {
+    public void LoadLevel(string level)
+    {
         SceneManager.LoadScene(level);
         levelLoadedEvent?.Invoke();
-   }
+    }
+
+    public void SpawnPlayers()
+    {
+        Debug.Log("Spawn Function");
+    }
 }
