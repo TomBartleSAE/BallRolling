@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class HammerModel : MonoBehaviour
+public class VerticalHammerModel : MonoBehaviour
 {
     [SerializeField]
     float reachTarget;

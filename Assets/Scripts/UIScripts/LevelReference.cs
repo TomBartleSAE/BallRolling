@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelReference : MonoBehaviour, ISelectable
 {
-    //public because we need to reference this from outside of the script to load the level
-    public string levelID;
+    [Header("Level Reference")]
+    [SerializeField]
+    string levelID;
 
+    [Header("Tween Variables")]
     [SerializeField]
     float scaleSize = 1.2f;
-
     [SerializeField]
     float scaleTime = 0.25f;
 
@@ -25,8 +26,9 @@ public class LevelReference : MonoBehaviour, ISelectable
         transform.DOScale(1f, scaleTime);
     }
 
+    //Load level using this objects unique level reference
     public void Interaction()
     {
-        SceneManager.LoadScene(levelID);
+        GameManager.Instance.LoadLevel(levelID);
     }
 }
