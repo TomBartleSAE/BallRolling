@@ -13,7 +13,7 @@ public class GatherDebrisTest : MonoBehaviour
     public LayerMask debrisLayer;
     public float speed = 1f;
 
-    private PathfindingGrid.Node currentNode;
+    private Grid2D.Node currentNode;
 
     public float radius = 25f;
 

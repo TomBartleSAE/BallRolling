@@ -6,32 +6,43 @@ using UnityEngine;
 
 public class PathfindingAgent : MonoBehaviour
 {
-    private PathfindingGrid grid;
+    private Grid2D grid2D;
 
-    private List<PathfindingGrid.Node> openNodes = new List<PathfindingGrid.Node>();
-    private List<PathfindingGrid.Node> closedNodes = new List<PathfindingGrid.Node>();
+    private List<Grid2D.Node> openNodes = new List<Grid2D.Node>();
+    private List<Grid2D.Node> closedNodes = new List<Grid2D.Node>();
 
     public Vector2Int start, destination;
 
-    public List<PathfindingGrid.Node> path = new List<PathfindingGrid.Node>();
+    public List<Grid2D.Node> path = new List<Grid2D.Node>();
 
     private void Start()
     {
-        grid = FindObjectOfType<PathfindingGrid>();
-        FindPath(start, destination);
+        grid2D = FindObjectOfType<Grid2D>();
+        //FindPath(start, destination);
     }
 
     public void FindPath(Vector2Int start, Vector2Int destination)
     {
-        PathfindingGrid.Node currentNode = grid.nodes[start.x, start.y];
+        foreach (Grid2D.Node node in grid2D.nodes)
+        {
+            node.parent = null;
+            node.gCost = 0;
+            node.hCost = 0;
+            node.fCost = 0;
+        }
+        openNodes.Clear();
+        closedNodes.Clear();
+        
+        
+        Grid2D.Node currentNode = grid2D.nodes[start.x, start.y];
         openNodes.Add(currentNode);
 
         // Loops until destination has been found
-        while (currentNode != grid.nodes[destination.x, destination.y])
+        while (currentNode != grid2D.nodes[destination.x, destination.y])
         {
             // Find neighbour with lowest f cost
             int lowestFCost = openNodes[0].fCost;
-            foreach (PathfindingGrid.Node node in openNodes)
+            foreach (Grid2D.Node node in openNodes)
             {
                 if (node.fCost <= lowestFCost)
                 {
@@ -44,7 +55,7 @@ public class PathfindingAgent : MonoBehaviour
             openNodes.Remove(currentNode);
             closedNodes.Add(currentNode);
 
-            if (currentNode == grid.nodes[destination.x, destination.y])
+            if (currentNode == grid2D.nodes[destination.x, destination.y])
             {
                 break;
             }
@@ -54,9 +65,9 @@ public class PathfindingAgent : MonoBehaviour
             {
                 for (int j = currentNode.coordinates.y - 1; j < currentNode.coordinates.y + 2; j++)
                 {
-                    if (i > grid.gridStartX && i < grid.gridEndX && j > grid.gridStartY && j < grid.gridEndY)
+                    if (i >= grid2D.gridStartX && i <= grid2D.gridEndX && j >= grid2D.gridStartY && j <= grid2D.gridEndY)
                     {
-                        PathfindingGrid.Node neighbour = grid.nodes[i, j];
+                        Grid2D.Node neighbour = grid2D.nodes[i, j];
                         // Ignore neighbour if blocked or closed
                         if (neighbour.blocked || closedNodes.Contains(neighbour))
                         {
@@ -66,7 +77,7 @@ public class PathfindingAgent : MonoBehaviour
                         int neighbourDistance = currentNode.gCost +
                                                 CalculateDistance(currentNode.coordinates, neighbour.coordinates);
 
-                        if (neighbourDistance < neighbour.gCost || !openNodes.Contains(grid.nodes[i, j]))
+                        if (neighbourDistance < neighbour.gCost || !openNodes.Contains(grid2D.nodes[i, j]))
                         {
                             neighbour.gCost = neighbourDistance;
                             neighbour.hCost = CalculateDistance(neighbour.coordinates, destination);
@@ -86,7 +97,7 @@ public class PathfindingAgent : MonoBehaviour
         path.Clear();
 
         // Generate path based on best nodes' parents
-        while (currentNode != grid.nodes[start.x, start.y])
+        while (currentNode != grid2D.nodes[start.x, start.y])
         {
             path.Add(currentNode);
             currentNode = currentNode.parent;
@@ -107,15 +118,25 @@ public class PathfindingAgent : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (grid != null)
+        if (grid2D != null)
         {
-            for (int x = grid.gridStartX; x < grid.gridEndX; x++)
+            for (int x = grid2D.gridStartX; x < grid2D.gridEndX; x++)
             {
-                for (int z = grid.gridStartY; z < grid.gridEndY; z++)
+                for (int z = grid2D.gridStartY; z < grid2D.gridEndY; z++)
                 {
-                    if (grid.nodes[x, z] != null)
+                    if (grid2D.nodes[x, z] != null)
                     {
-                        if (path.Contains(grid.nodes[x,z]))
+                        if (openNodes.Contains(grid2D.nodes[x, z]))
+                        {
+                            Gizmos.color = Color.green;
+                            Gizmos.DrawCube(new Vector3(x, 0.5f, z), Vector3.one);
+                        }
+                        if (closedNodes.Contains(grid2D.nodes[x, z]))
+                        {
+                            Gizmos.color = Color.yellow;
+                            Gizmos.DrawCube(new Vector3(x, 0.5f, z), Vector3.one);
+                        }
+                        if (path.Contains(grid2D.nodes[x,z]))
                         {
                             Gizmos.color = Color.blue;
                             Gizmos.DrawCube(new Vector3(x, 0.5f, z), Vector3.one);

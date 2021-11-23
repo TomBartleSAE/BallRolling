@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathfindingGrid : MonoBehaviour
+public class Grid2D : GridBase
 {
     public class Node
     {
@@ -27,11 +27,13 @@ public class PathfindingGrid : MonoBehaviour
 
     private void Awake()
     {
-        CalculateGrid();
+        GenerateGrid();
     }
 
-    public void CalculateGrid()
+    public override void GenerateGrid()
     {
+        base.GenerateGrid();
+        
         // These calculations allow for grid end to have lower values than grid start
         // and prevent grid not spawning correctly
         gridStartX = Mathf.Min(gridStart.x, gridEnd.x);
