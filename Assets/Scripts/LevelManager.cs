@@ -17,18 +17,20 @@ public class LevelManager : MonoBehaviour
 
     PlayerManager playerManager;
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
         OnLevelLoaded();
+
     }
 
     //Need to find a way for this to work from game manager
     private void OnLevelLoaded()
     {
-        for(int i = 0; i < spawnPoints.Length; i++)
+        for (int i = 0; i < spawnPoints.Length; i++)
         {
-            if(playerManager != null)
+            if (playerManager != null)
             {
                 if (i < playerManager.players.Count)
                 {

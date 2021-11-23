@@ -24,17 +24,12 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    public void LoadLevel(string level)
-    {
+   public void LoadLevel(string level)
+   {
         SceneManager.LoadScene(level);
         levelLoadedEvent?.Invoke();
-    }
+   }
 
     public void SpawnPlayers()
     {
