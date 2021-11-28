@@ -28,34 +28,22 @@ public class LevelManager : MonoBehaviour
     //Need to find a way for this to work from game manager
     private void OnLevelLoaded()
     {
-        /*
+        //Getting the total players from the player manager before the level loads (as I found an issue with players being added to the player manager on level load)
+        //minusing 1 because lists & arrays start at 0 but int starts at 1
+        int totalPlayers = playerManager.totalPlayers - 1;
+        
+
+        //For each spawn point, only spawn the corresponding amount of player balls to the amount of players in the game, otherwise spawn AI balls for all remaining spawn points
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            if (playerManager != null)
+            if (i <= totalPlayers)
             {
-                if (i < playerManager.players.Count)
-                {
-                    Instantiate(test, spawnPoints[i].position, spawnPoints[i].rotation);
-                }
-                else
-                {
-                    Instantiate(test2, spawnPoints[i].position, spawnPoints[i].rotation);
-                }
+                Instantiate(test, spawnPoints[i].position, spawnPoints[i].rotation);
+            }
+            else
+            {
+                Instantiate(test2, spawnPoints[i].position, spawnPoints[i].rotation);
             }
         }
-        */
-
-        
-        foreach(Transform t in spawnPoints)
-        {
-            //foreach(PlayerInput p in playerManager.players)
-            {
-                Instantiate(test, t.position, t.rotation);
-            }
-
-            //Instantiate(test2, t.position, t.rotation);
-
-        }
-        
     }
 }

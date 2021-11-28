@@ -3484,6 +3484,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 622297943}
     m_Modifications:
+    - target: {fileID: 55171345991519977, guid: 3f13e9cb3998ddd48b440477443f5f96, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217754780725450401, guid: 3f13e9cb3998ddd48b440477443f5f96, type: 3}
+      propertyPath: scaleSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299229548749880663, guid: 3f13e9cb3998ddd48b440477443f5f96, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8299229548806526948, guid: 3f13e9cb3998ddd48b440477443f5f96, type: 3}
       propertyPath: m_Name
       value: PlayerMenuPrefab

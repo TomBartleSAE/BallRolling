@@ -28,6 +28,7 @@ public class LobbyPlayer : MonoBehaviour
         int horizontal = (int)obj.ReadValue<Vector2>().x;
 
         //Send events to view model for tweening
+        /*
         if(horizontal > 0)
         {
             NextButtonEvent?.Invoke();
@@ -36,6 +37,7 @@ public class LobbyPlayer : MonoBehaviour
         {
             PreviousButtonEvent?.Invoke();
         }
+        */
 
         skinIndex += horizontal;
         // Wraps selection around start and end of skin array
