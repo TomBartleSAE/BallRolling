@@ -14,6 +14,9 @@ public class LobbyPlayer : MonoBehaviour
     private int skinIndex;
     public Material[] allSkins;
 
+    public bool isReady = false;
+    public event Action ReadyUpEvent;
+
     // Function to be called when player presses left/right in lobby
     // Used to select skin for player model in-game
     public void OnNavigate(InputAction.CallbackContext obj)
@@ -33,5 +36,18 @@ public class LobbyPlayer : MonoBehaviour
 
         skin = allSkins[skinIndex];
         menu?.SetSkin(skin);
+    }
+
+    public void OnSelect(InputAction.CallbackContext obj)
+    {
+        if (menu != null && menu.gameObject.activeInHierarchy)
+        {
+            isReady = !isReady;
+            menu?.EnableReadyIcon(isReady);
+            if (isReady)
+            {
+                ReadyUpEvent?.Invoke();
+            }
+        }
     }
 }

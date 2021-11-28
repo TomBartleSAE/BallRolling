@@ -86,12 +86,24 @@ MonoBehaviour:
     m_ActionId: 93a164d4-5d81-4d10-95ea-dcab181bf9ff
     m_ActionName: InMenu/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2570116431991079504}
+        m_TargetAssemblyTypeName: LobbyPlayer, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c1d43e6-85e0-4d15-8183-de85ca078eaf
     m_ActionName: InMenu/Select[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 359df84c-0240-4720-8f6a-417631dd4d82
+  m_DefaultActionMap: InMenu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2570116431991079504
@@ -115,3 +127,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 48fab87b0b89b5d4580465110cd41d7d, type: 2}
   - {fileID: 2100000, guid: 6c030b6daccf16345b65442d98f1f023, type: 2}
   - {fileID: 2100000, guid: 9b75bc73acc2ccc4bb077e58932e3245, type: 2}
+  isReady: 0
