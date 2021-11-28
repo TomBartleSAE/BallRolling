@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     //Need to find a way for this to work from game manager
     private void OnLevelLoaded()
     {
+        /*
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             if (playerManager != null)
@@ -42,18 +43,19 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+        */
 
-        /*
+        
         foreach(Transform t in spawnPoints)
         {
-            foreach(PlayerInput p in playerManager.players)
+            //foreach(PlayerInput p in playerManager.players)
             {
                 Instantiate(test, t.position, t.rotation);
             }
 
-            Instantiate(test2, t.position, t.rotation);
+            //Instantiate(test2, t.position, t.rotation);
 
         }
-        */
+        
     }
 }
