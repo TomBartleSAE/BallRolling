@@ -17,12 +17,26 @@ public class LobbyPlayer : MonoBehaviour
     public bool isReady = false;
     public event Action ReadyUpEvent;
 
+    //Need static for reference
+    public static event Action NextButtonEvent;
+    public static event Action PreviousButtonEvent;
+
     // Function to be called when player presses left/right in lobby
     // Used to select skin for player model in-game
     public void OnNavigate(InputAction.CallbackContext obj)
     {
         int horizontal = (int)obj.ReadValue<Vector2>().x;
-        
+
+        //Send events to view model for tweening
+        if(horizontal > 0)
+        {
+            NextButtonEvent?.Invoke();
+        }
+        else if(horizontal < 0)
+        {
+            PreviousButtonEvent?.Invoke();
+        }
+
         skinIndex += horizontal;
         // Wraps selection around start and end of skin array
         if (skinIndex < 0)
