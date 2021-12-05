@@ -204,10 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10da1509854cbe94bb1c6cdbdf9cda94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachTarget: 110
-  resetTarget: -110
-  accelerationSpeed: 1.5
-  resetSpeed: 1.5
+  forwardTarget: 90
+  reverseTarget: -80
 --- !u!1 &5870341542433508099
 GameObject:
   m_ObjectHideFlags: 0

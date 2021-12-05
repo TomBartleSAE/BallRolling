@@ -6,22 +6,31 @@ using DG.Tweening;
 public class VerticalHammerModel : MonoBehaviour
 {
     [SerializeField]
-    float reachTarget;
+    float forwardTarget;
     [SerializeField]
-    int resetTarget;
-    [SerializeField]
-    float accelerationSpeed;
-    [SerializeField]
-    float resetSpeed;
+    int reverseTarget;
+    //[SerializeField]
+    //float accelerationSpeed;
+    //[SerializeField]
+    //float resetSpeed;
 
     float rotation;
+    Rigidbody rb;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        SwingRight();
+        //SwingRight();
+
+        ForwardSwing();
     }
 
+    #region Old Rotation (Broken)
+    /*
     float GetPosition()
     {
         return rotation;
@@ -31,6 +40,7 @@ public class VerticalHammerModel : MonoBehaviour
     {
         rotation = newPosition;
         transform.localRotation = Quaternion.Euler(0, 0, newPosition);
+        
     }
 
     void SwingRight()
@@ -41,5 +51,20 @@ public class VerticalHammerModel : MonoBehaviour
     void SwingLeft()
     {
         DOTween.To(GetPosition, SetSwingPosition, resetTarget, resetSpeed).SetEase(Ease.InOutBack).OnComplete(SwingRight);
+    }
+    */
+
+    #endregion
+
+
+    //Needed to use rigibid body instead to allow collisions with player (using transform.rotate caused clipping)
+    void ForwardSwing()
+    {
+        rb.DORotate(new Vector3(0, 0, forwardTarget), 1f, RotateMode.Fast).SetEase(Ease.InOutBack).OnComplete(ReverseSwing);
+    }
+
+    void ReverseSwing()
+    {
+        rb.DORotate(new Vector3(0, 0, reverseTarget), 1f, RotateMode.Fast).SetEase(Ease.InOutBack).OnComplete(ForwardSwing);
     }
 }

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public StateBase inGameState;
     public StateBase inMenuState;
 
+    public LevelManager levelManager;
+
     //Events
     public event Action levelLoadedEvent;
 
@@ -25,14 +27,34 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-   public void LoadLevel(string level)
+    private void Start()
+    {
+        LevelManager.SpawnPlayerEvent += SpawnPlayers;
+        LevelManager.SpawnAIEvent += SpawnAI;
+    }
+
+    public void LoadLevel(string level)
    {
+        //Load new level
         SceneManager.LoadScene(level);
+
+        //Find that levels level manager
+        //levelManager = FindObjectOfType<LevelManager>();
+        //levelManager.SpawnPlayerEvent += SpawnPlayers;
+        //levelManager.SpawnAIEvent += SpawnAI;
+
         levelLoadedEvent?.Invoke();
    }
 
-    public void SpawnPlayers()
+    void SpawnPlayers(Transform spawnPos, GameObject player)
     {
-        Debug.Log("Spawn Function");
+        //Instantiate(player, spawnPos.position, spawnPos.rotation);
+        Debug.Log("Player Spawned");
+    }
+
+    void SpawnAI(Transform spawnPos, GameObject aiBall)
+    {
+        //Instantiate(aiBall, spawnPos.position, spawnPos.rotation);
+        Debug.Log("AI Spawned");
     }
 }

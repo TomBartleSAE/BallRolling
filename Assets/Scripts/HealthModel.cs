@@ -12,20 +12,20 @@ public class HealthModel : MonoBehaviour
     [SerializeField]
     float deathThreshold;
 
-    //DEATH EVENT
+    //Death Event
     public delegate void DeathSignature();
     public event DeathSignature DeathEvent;
 
-    public void DeathFunction()
+    public void Death()
     {
         DeathEvent?.Invoke();
     }
 
-    //MAX HEALTH EVENT
+    //Max Health Event
     public delegate void MaxHealthSignature();
     public event MaxHealthSignature MaxHealthEvent;
 
-    public void MaxHealthFunction()
+    public void MaxHealth()
     {
         MaxHealthEvent?.Invoke();
     }
@@ -38,17 +38,17 @@ public class HealthModel : MonoBehaviour
         //If health ever drops to 0 or below fire off DeathEvent
         if(myHealth <= deathThreshold)
         {
-            DeathFunction();
+            Death();
         }
 
         //If health ever reaches max health or more, fire off MaxHealthEvent
         if(myHealth >= maxHealth)
         {
-            MaxHealthFunction();
+            MaxHealth();
         }
     }
 
-    //GET HEALTH
+    //Get Health
     public float GetHealth()
     {
         return myHealth;
@@ -58,11 +58,11 @@ public class HealthModel : MonoBehaviour
     //INSPECTOR BUTTONS
     public void DeathButton()
     {
-        DeathFunction();
+        Death();
     }
 
     public void MaxHealthButton()
     {
-        MaxHealthFunction();
+        MaxHealth();
     }
 }
