@@ -6,15 +6,25 @@ using DG.Tweening;
 public class FlipperModel : MonoBehaviour
 {
     [SerializeField]
-    float reachTarget;
+    float forwardTarget;
     [SerializeField]
-    int resetTarget;
+    int reverseTarget;
+
+    Rigidbody rb;
+
+    /*
     [SerializeField]
     float accelerationSpeed;
     [SerializeField]
     float resetSpeed;
 
     float rotation;
+    */
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +32,7 @@ public class FlipperModel : MonoBehaviour
         LaunchFlipper();
     }
 
+    /*
     float GetPosition()
     {
         return rotation;
@@ -41,5 +52,16 @@ public class FlipperModel : MonoBehaviour
     void ResetFlipper()
     {
         DOTween.To(GetPosition, SetLaunchPosition, resetTarget, resetSpeed).OnComplete(LaunchFlipper);
+    }
+    */
+
+    void LaunchFlipper()
+    {
+        rb.DORotate(new Vector3(0, forwardTarget, 0), 1f, RotateMode.Fast).SetEase(Ease.OutElastic).OnComplete(ResetFlipper);
+    }
+
+    void ResetFlipper()
+    {
+        rb.DORotate(new Vector3(0, reverseTarget, 0), 1.5f, RotateMode.Fast).OnComplete(LaunchFlipper);
     }
 }
