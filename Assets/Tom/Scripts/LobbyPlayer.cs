@@ -21,6 +21,11 @@ public class LobbyPlayer : MonoBehaviour
     public static event Action NextButtonEvent;
     public static event Action PreviousButtonEvent;
 
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Function to be called when player presses left/right in lobby
     // Used to select skin for player model in-game
     public void OnNavigate(InputAction.CallbackContext obj)

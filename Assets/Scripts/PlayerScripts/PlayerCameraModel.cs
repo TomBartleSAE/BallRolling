@@ -8,7 +8,7 @@ public class PlayerCameraModel : MonoBehaviour
     public Transform target;
     public Transform direction;
 
-    float currentRotation = 0;
+    public float currentRotation = 0;
 
     public float zDefaultOffset = 3f;
     public Vector3 yOffset;
@@ -36,22 +36,6 @@ public class PlayerCameraModel : MonoBehaviour
     }
 
 
-    public void OnLookDirection(InputAction.CallbackContext obj)
-    {
-        //Debug.Log(obj.ReadValue<Vector2>();
-
-        //pivot.Rotate(new Vector3(obj.ReadValue<Vector2>().y, obj.ReadValue<Vector2>().x, 0)*0.1f);
-
-        //currentRotation = -obj.ReadValue<Vector2>().y;
-        //currentRotation = Mathf.Clamp(currentRotation, -90, 90);
-        //pivotX.localEulerAngles += new Vector3(0, obj.ReadValue<Vector2>().x, 0) * 0.1f;
-
-        currentRotation = obj.ReadValue<Vector2>().x;
-
-        //pivotY.localEulerAngles += new Vector3(currentRotation, 0, 0) * 0.1f;
-    }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -60,13 +44,13 @@ public class PlayerCameraModel : MonoBehaviour
         transform.localEulerAngles += new Vector3(0f, currentRotation, 0f);
         transform.position = target.position - transform.forward * zDefaultOffset + yOffset;
 
-        
-        if(targetHasRB)
+
+        if (targetHasRB)
         {
             float targetVelocity = targetRB.velocity.magnitude * velocityMultiplier;
             transform.localPosition -= transform.forward * targetVelocity;
         }
-        
+
         //transform.LookAt(target);
 
 

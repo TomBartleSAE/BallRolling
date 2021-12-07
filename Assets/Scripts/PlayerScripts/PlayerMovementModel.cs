@@ -11,6 +11,8 @@ public class PlayerMovementModel : MonoBehaviour
     CameraTarget camTarget;
     HealthModel myHealth;
 
+    public PlayerCameraModel camera;
+
     [SerializeField]
     float speed;
 
@@ -39,6 +41,21 @@ public class PlayerMovementModel : MonoBehaviour
 
         //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
         //rb.MovePosition(rb.position * playerInput * speed * Time.fixedDeltaTime);
+    }
+    
+    public void OnLookDirection(InputAction.CallbackContext obj)
+    {
+        //Debug.Log(obj.ReadValue<Vector2>();
+
+        //pivot.Rotate(new Vector3(obj.ReadValue<Vector2>().y, obj.ReadValue<Vector2>().x, 0)*0.1f);
+
+        //currentRotation = -obj.ReadValue<Vector2>().y;
+        //currentRotation = Mathf.Clamp(currentRotation, -90, 90);
+        //pivotX.localEulerAngles += new Vector3(0, obj.ReadValue<Vector2>().x, 0) * 0.1f;
+
+        camera.currentRotation = obj.ReadValue<Vector2>().x;
+
+        //pivotY.localEulerAngles += new Vector3(currentRotation, 0, 0) * 0.1f;
     }
 
     private void OnEnable()
