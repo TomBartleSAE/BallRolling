@@ -9,7 +9,7 @@ public class LobbyPlayer : MonoBehaviour
     // Gives input to a spawned player object and applies the chosen skin
     public PlayerInput input;
     public PlayerMenu menu;
-    
+
     public Material skin;
     private int skinIndex;
     public Material[] allSkins;
@@ -25,44 +25,39 @@ public class LobbyPlayer : MonoBehaviour
     // Used to select skin for player model in-game
     public void OnNavigate(InputAction.CallbackContext obj)
     {
-        int horizontal = (int)obj.ReadValue<Vector2>().x;
+        if (gameObject.activeInHierarchy && obj.performed)
+        {
+            int horizontal = (int) obj.ReadValue<Vector2>().x;
 
-        //Send events to view model for tweening
-        /*
-        if(horizontal > 0)
-        {
-            NextButtonEvent?.Invoke();
-        }
-        else if(horizontal < 0)
-        {
-            PreviousButtonEvent?.Invoke();
-        }
-        */
+            skinIndex += horizontal;
+            // Wraps selection around start and end of skin array
+            if (skinIndex < 0)
+            {
+                skinIndex = allSkins.Length - 1;
+            }
+            else if (skinIndex >= allSkins.Length)
+            {
+                skinIndex = 0;
+            }
 
-        skinIndex += horizontal;
-        // Wraps selection around start and end of skin array
-        if (skinIndex < 0)
-        {
-            skinIndex = allSkins.Length - 1;
+            skin = allSkins[skinIndex];
+            print(horizontal);
+            menu?.SetSkin(skin);
         }
-        else if (skinIndex >= allSkins.Length)
-        {
-            skinIndex = 0;
-        }
-
-        skin = allSkins[skinIndex];
-        menu?.SetSkin(skin);
     }
 
     public void OnSelect(InputAction.CallbackContext obj)
     {
-        if (menu != null && menu.gameObject.activeInHierarchy)
+        if (gameObject.activeInHierarchy && obj.performed)
         {
-            isReady = !isReady;
-            menu?.EnableReadyIcon(isReady);
-            if (isReady)
+            if (menu != null && menu.gameObject.activeInHierarchy)
             {
-                ReadyUpEvent?.Invoke();
+                isReady = !isReady;
+                menu?.EnableReadyIcon(isReady);
+                if (isReady)
+                {
+                    ReadyUpEvent?.Invoke();
+                }
             }
         }
     }

@@ -120,11 +120,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 8359713380660612505}
   menu: {fileID: 0}
-  skin: {fileID: 2100000, guid: 84487a651ba6a76418f96839babcda50, type: 2}
+  skin: {fileID: 2100000, guid: 48d8a889c2e5be947a46b860f1f11baf, type: 2}
   allSkins:
-  - {fileID: 2100000, guid: 84487a651ba6a76418f96839babcda50, type: 2}
-  - {fileID: 2100000, guid: 7592a8af6a2e62a469b745f000a976b1, type: 2}
-  - {fileID: 2100000, guid: 48fab87b0b89b5d4580465110cd41d7d, type: 2}
-  - {fileID: 2100000, guid: 6c030b6daccf16345b65442d98f1f023, type: 2}
-  - {fileID: 2100000, guid: 9b75bc73acc2ccc4bb077e58932e3245, type: 2}
+  - {fileID: 2100000, guid: 48d8a889c2e5be947a46b860f1f11baf, type: 2}
+  - {fileID: 2100000, guid: 1db5041a0fc0424438fe592edbcca23e, type: 2}
+  - {fileID: 2100000, guid: 89248b73d0d9e0346bbea7b5598103e1, type: 2}
+  - {fileID: 2100000, guid: b85b3f210323cdc4cbe92341b39f5672, type: 2}
+  - {fileID: 2100000, guid: 58034f9d9b0e1074394937639d5c533c, type: 2}
+  - {fileID: 2100000, guid: ef091f4884388e444b938565d9f5739a, type: 2}
+  - {fileID: 2100000, guid: 76adadab624891f4cae52d21892c9f92, type: 2}
+  - {fileID: 2100000, guid: 7de423aa992df644f802213a94749a19, type: 2}
+  - {fileID: 2100000, guid: 423f514a4cd8fce46bacd8804c5354df, type: 2}
+  - {fileID: 2100000, guid: a926a1cb1bede454eae3dfd859639f46, type: 2}
+  - {fileID: 2100000, guid: b31536885b5677543b4b54a544a76cd3, type: 2}
+  - {fileID: 2100000, guid: bb8da52d7e493744c8ce16d954c6c66d, type: 2}
   isReady: 0
