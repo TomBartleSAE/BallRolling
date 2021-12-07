@@ -46,16 +46,16 @@ public class LevelManager : MonoBehaviour
         {
             if (i <= totalPlayers)
             {
-                //Instantiate(player, spawnPoints[i].position, spawnPoints[i].rotation);
-                SpawnPlayerEvent?.Invoke(spawnPoints[i], player);
-                Debug.Log("Player Counter");
+                Instantiate(player, spawnPoints[i].position, spawnPoints[i].rotation);
+                //SpawnPlayerEvent?.Invoke(spawnPoints[i], player);
+                //Debug.Log("Player Counter");
 
             }
             else
             {
-                //Instantiate(aiBall, spawnPoints[i].position, spawnPoints[i].rotation);
-                SpawnAIEvent?.Invoke(spawnPoints[i], aiBall);
-                Debug.Log("Player Counter");
+                Instantiate(aiBall, spawnPoints[i].position, spawnPoints[i].rotation);
+                //SpawnAIEvent?.Invoke(spawnPoints[i], aiBall);
+                //Debug.Log("Player Counter");
             }
         }
     }
