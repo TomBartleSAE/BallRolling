@@ -32,9 +32,9 @@ public class ThingWithHealth : MonoBehaviour
         myHealth.MaxHealthEvent += MaxHealth;
     }
 
-    void Die()
+    void Die(GameObject me)
     {
-        Destroy(gameObject);
+        Destroy(me);
         Debug.Log("This Object Is Now Dead");
     }
 

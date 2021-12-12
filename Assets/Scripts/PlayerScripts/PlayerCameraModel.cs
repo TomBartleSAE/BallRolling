@@ -40,7 +40,6 @@ public class PlayerCameraModel : MonoBehaviour
     void Update()
     {
         //transform.position = target.position;
-
         transform.localEulerAngles += new Vector3(0f, currentRotation, 0f);
         transform.position = target.position - transform.forward * zDefaultOffset + yOffset;
 
@@ -56,6 +55,12 @@ public class PlayerCameraModel : MonoBehaviour
 
         //transform.Rotate(new Vector3(0, 90, 0));
         //transform.SetPositionAndRotation(target.transform.position, target.transform.rotation);
+    }
+
+    //Adjust the zoom of the camera based on the size of the ball
+    void AdjustCameraZoom(float newZoom)
+    {
+        zDefaultOffset = newZoom * 3;
     }
 
     //CHANGE CAMERA TARGET
@@ -77,5 +82,6 @@ public class PlayerCameraModel : MonoBehaviour
 
         //Getting the component from the target and assigning the camera to this target
         target.GetComponent<CameraTarget>().SetMyCamera(this);
+        target.GetComponent<HealthModel>().HealthChangedEvent += AdjustCameraZoom;
     }
 }

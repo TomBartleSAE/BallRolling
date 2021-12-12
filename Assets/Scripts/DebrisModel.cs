@@ -20,11 +20,11 @@ public class DebrisModel : MonoBehaviour
         GetComponent<Collider>().enabled = true;
     }
 
-    public void Absorb()
+    public void Absorb(GameObject ball)
     {
         // Replace with tweened animation of debris going into ball
         
-        gameObject.SetActive(false);
+        ball.SetActive(false);
     }
 
     private void OnEnable()

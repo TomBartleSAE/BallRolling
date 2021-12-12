@@ -90,8 +90,11 @@ public class PlayerMovementModel : MonoBehaviour
 
     }
 
-    void Die()
+    void Die(GameObject go)
     {
+        //Unsub from event to prevent calling again
+        myHealth.DeathEvent -= Die;
+
         gameObject.SetActive(false);
         Debug.Log("YOU DIED");
     }

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public LevelManager levelManager;
 
+    public List<RollingBallModel> totalBalls = new List<RollingBallModel>();
+
     //Events
     public event Action levelLoadedEvent;
 
@@ -26,13 +28,6 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
     }
-
-    private void Start()
-    {
-        LevelManager.SpawnPlayerEvent += SpawnPlayers;
-        LevelManager.SpawnAIEvent += SpawnAI;
-    }
-
     public void LoadLevel(string level)
    {
         //Load new level

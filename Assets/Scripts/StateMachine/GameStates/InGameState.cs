@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class InGameState : StateBase
 {
     PlayerActionMap playerActionMap;
+    GameManager gameManager;
+
+    public List<PlayerMovementModel> playerBalls = new List<PlayerMovementModel>();
+    public List<AIBallModel> aiBalls = new List<AIBallModel>();
 
     public override void Enter()
     {
@@ -13,15 +17,14 @@ public class InGameState : StateBase
         playerActionMap = new PlayerActionMap();
         playerActionMap.InGame.Enable();
 
-        Debug.Log("Entered Game State");
+        gameManager = GetComponent<GameManager>();
 
-        //If the current scene is not scene 1, load scene 1
-        if (SceneManager.GetActiveScene().buildIndex != 1)
+        foreach(RollingBallModel ball in gameManager.totalBalls)
         {
-            //TODO: Remove this once we have level select functionality 
-            //will need to load scene based on a given input
-            SceneManager.LoadScene(1);
+            ball.GetComponent<HealthModel>().DeathEvent += RemoveBall;
         }
+
+        Debug.Log("Entered Game State");
 
     }
 
@@ -31,8 +34,6 @@ public class InGameState : StateBase
         //base.Execute();
 
         //Check if there is only 1 player alive / or game mode condition has been met
-        //EndGame()
-
     }
 
     public override void Exit()
@@ -42,5 +43,56 @@ public class InGameState : StateBase
         playerActionMap.InGame.Disable();
 
         Debug.Log("Exiting Game State");
+    }
+
+    void RemoveBall(GameObject ball)
+    {
+        //Remove the ball that just died from the list
+        gameManager.totalBalls.Remove(ball.GetComponent<RollingBallModel>());
+
+        //Clear list before adding more to the list to stop duplicates
+        playerBalls.Clear();
+        aiBalls.Clear();
+
+        //Check what balls are left are removing the last ball
+        foreach (RollingBallModel rbm in gameManager.totalBalls)
+        {
+            //Find all players left in the game
+            if (rbm.GetComponent<PlayerMovementModel>() != null)
+            {
+                playerBalls.Add(rbm.GetComponent<PlayerMovementModel>());
+            }
+
+            //Find all AI left in the game
+            if (rbm.GetComponent<AIBallModel>() != null)
+            {
+                aiBalls.Add(rbm.GetComponent<AIBallModel>());
+            }
+        }
+
+        //Check if all players have been eliminated
+        if (playerBalls.Count <= 0)
+        {
+            EndGame(null);
+        }
+        //If all AI are dead and only 1 player remains
+        else if (aiBalls.Count <= 0 && playerBalls.Count == 1)
+        {
+            EndGame(playerBalls[0].gameObject);
+        }
+
+
+    }
+
+    void EndGame(GameObject winningBall)
+    {
+        if(winningBall != null)
+        {
+            //Show Winning Player
+        }
+        else
+        {
+            //Show AI Screen
+        }
     }
 }

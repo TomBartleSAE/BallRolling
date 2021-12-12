@@ -9,11 +9,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     Transform[] spawnPoints;
 
-    public GameObject player;
-    public GameObject aiBall;
+    public PlayerMovementModel player;
+    public AIBallModel aiBall;
+    public PlayerCameraModel playerCamera;
 
-    public static event Action<Transform, GameObject> SpawnPlayerEvent;
-    public static event Action<Transform, GameObject> SpawnAIEvent;
+    List<PlayerCameraModel> totalCameras = new List<PlayerCameraModel>();
 
     PlayerManager playerManager;
     GameManager gameManager;
@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         //playerManager = FindObjectOfType<PlayerManager>();
-        //gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
         playerManager = FindObjectOfType<PlayerManager>();
         //GameManager.Instance.levelLoadedEvent += OnLevelLoaded;
         OnLevelLoaded();
@@ -46,17 +46,49 @@ public class LevelManager : MonoBehaviour
         {
             if (i <= totalPlayers)
             {
-                Instantiate(player, spawnPoints[i].position, spawnPoints[i].rotation);
-                //SpawnPlayerEvent?.Invoke(spawnPoints[i], player);
-                //Debug.Log("Player Counter");
+                //Spawning the player prefabs
+                PlayerMovementModel newPlayer = Instantiate(player, spawnPoints[i].position, spawnPoints[i].rotation);
+                PlayerCameraModel newCamera = Instantiate(playerCamera, spawnPoints[i].position, Quaternion.Euler(25f, 0,0));
 
+                //Assigning camera references
+                newPlayer.camera = newCamera;
+                newCamera.target = newPlayer.transform;
+
+                //Add all spawned players + cameras to lists for keeping track
+                gameManager.totalBalls.Add(newPlayer.GetComponent<RollingBallModel>());
+                totalCameras.Add(newCamera);
             }
             else
             {
-                Instantiate(aiBall, spawnPoints[i].position, spawnPoints[i].rotation);
-                //SpawnAIEvent?.Invoke(spawnPoints[i], aiBall);
-                //Debug.Log("Player Counter");
+                AIBallModel newAI = Instantiate(aiBall, spawnPoints[i].position, spawnPoints[i].rotation);
+                gameManager.totalBalls.Add(newAI.GetComponent<RollingBallModel>());
             }
+        }
+
+        SetupCameras();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<HealthModel>() != null)
+        {
+            //TODO: Damage & Respawn Player at a spawn point
+
+            Debug.Log("DeadZone Hit");
+        }
+    }
+
+    void SetupCameras()
+    {
+        if (totalCameras.Count == 1)
+        {
+            totalCameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 1f);
+            //totalCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 1f, 1f);
+        }
+        if (totalCameras.Count == 2)
+        {
+            totalCameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1f);
+            totalCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 1f, 1f);
         }
     }
 }
