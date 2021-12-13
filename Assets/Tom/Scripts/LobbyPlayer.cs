@@ -13,6 +13,7 @@ public class LobbyPlayer : MonoBehaviour
     public Material skin;
     private int skinIndex;
     public Material[] allSkins;
+    public MeshRenderer mesh;
 
     public bool isReady = false;
     public event Action ReadyUpEvent;
@@ -46,8 +47,8 @@ public class LobbyPlayer : MonoBehaviour
             }
 
             skin = allSkins[skinIndex];
-            print(horizontal);
             menu?.SetSkin(skin);
+            mesh.material = skin;
         }
     }
 

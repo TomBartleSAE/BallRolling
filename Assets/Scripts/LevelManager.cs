@@ -45,11 +45,15 @@ public class LevelManager : MonoBehaviour
             if (i <= totalPlayers)
             {
                 //Spawning the player prefabs
-                PlayerMovementModel newPlayer = Instantiate(player, spawnPoints[i].position, spawnPoints[i].rotation);
+                //PlayerMovementModel newPlayer = Instantiate(player, spawnPoints[i].position, spawnPoints[i].rotation);
+                PlayerInput newPlayer = playerManager.players[i];
+                newPlayer.transform.position = spawnPoints[i].position;
+                newPlayer.GetComponent<Rigidbody>().isKinematic = false;
+                newPlayer.SwitchCurrentActionMap("InGame");
                 PlayerCameraModel newCamera = Instantiate(playerCamera, spawnPoints[i].position, Quaternion.Euler(25f, 0,0));
 
                 //Assigning camera references
-                newPlayer.camera = newCamera;
+                newPlayer.GetComponent<PlayerMovementModel>().camera = newCamera;
                 newCamera.target = newPlayer.transform;
 
                 //Add all spawned players + cameras to lists for keeping track

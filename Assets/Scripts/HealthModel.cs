@@ -6,7 +6,7 @@ public class HealthModel : MonoBehaviour
 {
     //Allows each object to have unique health variable
     [SerializeField]
-    float myHealth;
+    public float myHealth;
     [SerializeField]
     float maxHealth;
     [SerializeField]

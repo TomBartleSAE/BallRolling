@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 1619751729133972621}
   - component: {fileID: -229599176222788895}
   - component: {fileID: 9091939047298873929}
-  m_Layer: 0
+  - component: {fileID: 7755155319471988899}
+  - component: {fileID: -7268066807887476764}
+  m_Layer: 7
   m_Name: AI Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 9091939047298873929}
   ballTransform: {fileID: 2982478036515792049}
+  duration: 0
 --- !u!114 &-3285255198033068402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,11 +66,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5817c0af506b104880863a2e46924b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 9091939047298873929}
+  agent: {fileID: 7755155319471988899}
+  moveSpeed: 5
   detectRadius: 5
   ballLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   isBallNearby: 0
+  closestBallSize: 0
+  checkInterval: 1
+  target: {fileID: 0}
+  debrisLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &1959067461914703312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myHealth: 1
   maxHealth: 1000
+  deathThreshold: 0
 --- !u!114 &1619751729133972621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parentBlackboard: {fileID: 0}
   _serializedBlackboard: '{"_variables":{"isBallNearby":{"_propertyPath":"AIBallModel.isBallNearby","_name":"isBallNearby","_id":"c12d7288-604c-4403-b025-508ca6d7e84c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"mySize":{"_value":5.0,"_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"mySize":{"_value":5.0,"_propertyPath":"HealthModel.myHealth","_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"otherBallSize":{"_value":5.0,"_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
@@ -133,7 +146,7 @@ MonoBehaviour:
   - _json: '{"_propertyPath":"AIBallModel.isBallNearby","_name":"isBallNearby","_id":"c12d7288-604c-4403-b025-508ca6d7e84c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
-  - _json: '{"_value":5.0,"_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+  - _json: '{"_value":5.0,"_propertyPath":"HealthModel.myHealth","_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
   - _json: '{"_value":5.0,"_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
@@ -155,6 +168,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &7755155319471988899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982478035226924517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60be9103be1b2b34284021c47133f2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7268066807887476764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982478035226924517}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257453d1b40b5984bad5510ba5e07ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathfinding: {fileID: 7755155319471988899}
+  followRange: 1
+  rb: {fileID: 9091939047298873929}
 --- !u!1 &2982478036515792050
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +207,7 @@ GameObject:
   - component: {fileID: 2982478036515792054}
   - component: {fileID: 2982478036515792055}
   - component: {fileID: 1852715840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +235,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2982478036515792050}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4864056309639282896, guid: 81849138d7653bd4ba09132a862e141b, type: 3}
 --- !u!23 &2982478036515792055
 MeshRenderer:
   m_ObjectHideFlags: 0

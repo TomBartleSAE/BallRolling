@@ -74,14 +74,17 @@ public class PlayerMovementModel : MonoBehaviour
     void FixedUpdate()
     {
 
-        Vector3 forwardDirection = camTarget.GetMyCamera().direction.forward * playerInput.y;
-        Vector3 sideDirection = camTarget.GetMyCamera().direction.right * playerInput.x;
+        if (camera != null)
+        {
+            Vector3 forwardDirection = camTarget.GetMyCamera().direction.forward * playerInput.y;
+            Vector3 sideDirection = camTarget.GetMyCamera().direction.right * playerInput.x;
 
-        Vector3 movementDirection = forwardDirection + sideDirection;
+            Vector3 movementDirection = forwardDirection + sideDirection;
 
-        //rb.AddTorque(new Vector3(playerInput.x, 0f, playerInput.y) * speed, ForceMode.Force);
+            //rb.AddTorque(new Vector3(playerInput.x, 0f, playerInput.y) * speed, ForceMode.Force);
 
-        rb.AddForce(movementDirection * speed/4, ForceMode.Force);
+            rb.AddForce(movementDirection * speed/4, ForceMode.Force);
+        }
 
 
         //speed = 0;

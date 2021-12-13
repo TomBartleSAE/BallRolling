@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Tom;
 using UnityEngine;
 
 public class GatherDebrisTest : MonoBehaviour
@@ -13,7 +14,7 @@ public class GatherDebrisTest : MonoBehaviour
     public LayerMask debrisLayer;
     public float speed = 1f;
 
-    private Grid2D.Node currentNode;
+    private PathfindingGrid.Node currentNode;
 
     public float radius = 25f;
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3458615428434439372}
   - component: {fileID: 8403225070753806054}
   - component: {fileID: 2992621112570369979}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1981510227}
   - component: {fileID: 3763804886760852650}
   - component: {fileID: 8189048553806023047}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DebrisSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
