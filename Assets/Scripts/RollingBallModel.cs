@@ -8,6 +8,7 @@ using DG.Tweening;
 public class RollingBallModel : MonoBehaviour
 {
     public Rigidbody rb;
+    public GameObject view;
     public Transform ballTransform;
     private HealthModel health;
 
@@ -20,6 +21,11 @@ public class RollingBallModel : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<HealthModel>();
+    }
+
+    private void Start()
+    {
+        health.DeathEvent += Die;
     }
 
     public void OnCollisionEnter(Collision other)
@@ -92,5 +98,14 @@ public class RollingBallModel : MonoBehaviour
     void SetNewSize(float newSize)
     {
         ballTransform.localScale = new Vector3(newSize, newSize, newSize);
+    }
+
+    public void Die(GameObject go)
+    {
+        //Unsub from event to prevent calling again
+        health.DeathEvent -= Die;
+
+        view.SetActive(false);
+        Debug.Log("YOU DIED");
     }
 }

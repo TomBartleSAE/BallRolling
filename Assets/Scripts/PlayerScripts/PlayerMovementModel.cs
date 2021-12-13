@@ -9,17 +9,10 @@ public class PlayerMovementModel : MonoBehaviour
     Vector2 playerInput;
 
     CameraTarget camTarget;
-    HealthModel myHealth;
-
     public PlayerCameraModel camera;
 
     [SerializeField]
     float speed;
-
-    private void Awake()
-    {
-        myHealth = GetComponent<HealthModel>();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,11 +51,6 @@ public class PlayerMovementModel : MonoBehaviour
         //pivotY.localEulerAngles += new Vector3(currentRotation, 0, 0) * 0.1f;
     }
 
-    private void OnEnable()
-    {
-        myHealth.DeathEvent += Die;
-    }
-
     void Update()
     {
         //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
@@ -91,14 +79,5 @@ public class PlayerMovementModel : MonoBehaviour
 
         //rb.AddForce(new Vector3(playerInput.x, 0f, playerInput.y) * speed);
 
-    }
-
-    void Die(GameObject go)
-    {
-        //Unsub from event to prevent calling again
-        myHealth.DeathEvent -= Die;
-
-        gameObject.SetActive(false);
-        Debug.Log("YOU DIED");
     }
 }

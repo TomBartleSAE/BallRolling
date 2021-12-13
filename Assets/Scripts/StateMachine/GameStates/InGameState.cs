@@ -71,13 +71,13 @@ public class InGameState : StateBase
         if (playerBalls.Count <= 0)
         {
             gameManager.winningBall = null;
-            LoadEndGameScene();
+            Invoke("LoadEndGameScene", 3f);
         }
         //If all AI are dead and only 1 player remains
         else if (aiBalls.Count <= 0 && playerBalls.Count == 1)
         {
             gameManager.winningBall = playerBalls[0].gameObject;
-            LoadEndGameScene();
+            Invoke("LoadEndGameScene", 3f);
         }
 
 

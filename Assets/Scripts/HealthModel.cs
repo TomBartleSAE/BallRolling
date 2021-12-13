@@ -18,7 +18,7 @@ public class HealthModel : MonoBehaviour
 
     public void Death()
     {
-        DeathEvent?.Invoke(this.gameObject);
+        DeathEvent?.Invoke(gameObject);
     }
 
     //Max Health Event
