@@ -16,14 +16,12 @@ public class LevelManager : MonoBehaviour
     List<PlayerCameraModel> totalCameras = new List<PlayerCameraModel>();
 
     PlayerManager playerManager;
-    GameManager gameManager;
     int totalPlayers;
 
     // Start is called before the first frame update
     void Start()
     {
         //playerManager = FindObjectOfType<PlayerManager>();
-        gameManager = FindObjectOfType<GameManager>();
         playerManager = FindObjectOfType<PlayerManager>();
         //GameManager.Instance.levelLoadedEvent += OnLevelLoaded;
         OnLevelLoaded();
@@ -55,17 +53,19 @@ public class LevelManager : MonoBehaviour
                 newCamera.target = newPlayer.transform;
 
                 //Add all spawned players + cameras to lists for keeping track
-                gameManager.totalBalls.Add(newPlayer.GetComponent<RollingBallModel>());
+                GameManager.Instance.totalBalls.Add(newPlayer.GetComponent<RollingBallModel>());
                 totalCameras.Add(newCamera);
             }
             else
             {
                 AIBallModel newAI = Instantiate(aiBall, spawnPoints[i].position, spawnPoints[i].rotation);
-                gameManager.totalBalls.Add(newAI.GetComponent<RollingBallModel>());
+                GameManager.Instance.totalBalls.Add(newAI.GetComponent<RollingBallModel>());
+
             }
         }
 
         SetupCameras();
+        GameManager.Instance.stateManager.ChangeState(GameManager.Instance.inGameState);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,8 +82,8 @@ public class LevelManager : MonoBehaviour
     {
         if (totalCameras.Count == 1)
         {
+            //Full Screen
             totalCameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 1f);
-            //totalCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 1f, 1f);
         }
         if (totalCameras.Count == 2)
         {

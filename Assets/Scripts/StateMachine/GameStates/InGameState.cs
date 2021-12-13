@@ -7,6 +7,7 @@ public class InGameState : StateBase
 {
     PlayerActionMap playerActionMap;
     GameManager gameManager;
+    LevelManager levelManager;
 
     public List<PlayerMovementModel> playerBalls = new List<PlayerMovementModel>();
     public List<AIBallModel> aiBalls = new List<AIBallModel>();
@@ -18,11 +19,7 @@ public class InGameState : StateBase
         playerActionMap.InGame.Enable();
 
         gameManager = GetComponent<GameManager>();
-
-        foreach(RollingBallModel ball in gameManager.totalBalls)
-        {
-            ball.GetComponent<HealthModel>().DeathEvent += RemoveBall;
-        }
+        SubscribeToEvents();
 
         Debug.Log("Entered Game State");
 
@@ -73,26 +70,29 @@ public class InGameState : StateBase
         //Check if all players have been eliminated
         if (playerBalls.Count <= 0)
         {
-            EndGame(null);
+            gameManager.winningBall = null;
+            LoadEndGameScene();
         }
         //If all AI are dead and only 1 player remains
         else if (aiBalls.Count <= 0 && playerBalls.Count == 1)
         {
-            EndGame(playerBalls[0].gameObject);
+            gameManager.winningBall = playerBalls[0].gameObject;
+            LoadEndGameScene();
         }
 
 
     }
 
-    void EndGame(GameObject winningBall)
+    void LoadEndGameScene()
     {
-        if(winningBall != null)
+        SceneManager.LoadScene("EndScreen");
+    }
+
+    void SubscribeToEvents()
+    {
+        foreach(RollingBallModel ball in gameManager.totalBalls)
         {
-            //Show Winning Player
-        }
-        else
-        {
-            //Show AI Screen
+            ball.GetComponent<HealthModel>().DeathEvent += RemoveBall;
         }
     }
 }

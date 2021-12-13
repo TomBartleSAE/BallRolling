@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    //State Manager References
+    public StateManager stateManager;
     public StateBase inGameState;
     public StateBase inMenuState;
 
-    public LevelManager levelManager;
-
     public List<RollingBallModel> totalBalls = new List<RollingBallModel>();
+    public GameObject winningBall;
 
     //Events
     public event Action levelLoadedEvent;
@@ -32,24 +33,7 @@ public class GameManager : MonoBehaviour
    {
         //Load new level
         SceneManager.LoadScene(level);
-
-        //Find that levels level manager
-        //levelManager = FindObjectOfType<LevelManager>();
-        //levelManager.SpawnPlayerEvent += SpawnPlayers;
-        //levelManager.SpawnAIEvent += SpawnAI;
-
-        levelLoadedEvent?.Invoke();
+        stateManager.ChangeState(inGameState);
+        //levelLoadedEvent?.Invoke();
    }
-
-    void SpawnPlayers(Transform spawnPos, GameObject player)
-    {
-        //Instantiate(player, spawnPos.position, spawnPos.rotation);
-        Debug.Log("Player Spawned");
-    }
-
-    void SpawnAI(Transform spawnPos, GameObject aiBall)
-    {
-        //Instantiate(aiBall, spawnPos.position, spawnPos.rotation);
-        Debug.Log("AI Spawned");
-    }
 }
