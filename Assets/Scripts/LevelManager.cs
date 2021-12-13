@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+//using System;
 using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
+    //public static LevelManager Instance;
+
     [SerializeField]
     Transform[] spawnPoints;
 
@@ -17,6 +19,22 @@ public class LevelManager : MonoBehaviour
 
     PlayerManager playerManager;
     int totalPlayers;
+
+    //public event System.Action<GameObject> OutOfBoundsEvent;
+    public event System.Action OutOfBoundsEvent;
+
+
+    /*
+    private void Awake()
+    {
+        //Only set instance as a reference if there are no other references
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+    }
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -74,11 +92,10 @@ public class LevelManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<HealthModel>() != null)
+        if (other.GetComponent<RollingBallModel>() != null)
         {
-            //TODO: Damage & Respawn Player at a spawn point
-
-            Debug.Log("DeadZone Hit");
+            other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            other.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
         }
     }
 

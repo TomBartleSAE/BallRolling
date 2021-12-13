@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 1365938597}
   - component: {fileID: -435240704925972414}
   - component: {fileID: -3604653324682495588}
-  - component: {fileID: 8617365144632266388}
+  - component: {fileID: 290693857307292667}
   m_Layer: 7
   m_Name: Player Ball
   m_TagString: Untagged
@@ -314,7 +314,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bb8da52d7e493744c8ce16d954c6c66d, type: 2}
   mesh: {fileID: 682025496193055095}
   isReady: 0
---- !u!135 &8617365144632266388
+--- !u!135 &290693857307292667
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,7 +325,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &682025496193055090
 GameObject:

@@ -26,6 +26,7 @@ public class RollingBallModel : MonoBehaviour
     private void Start()
     {
         health.DeathEvent += Die;
+        //LevelManager.Instance.OutOfBoundsEvent += RespawnPlayer;
     }
 
     public void OnCollisionEnter(Collision other)
@@ -105,7 +106,14 @@ public class RollingBallModel : MonoBehaviour
         //Unsub from event to prevent calling again
         health.DeathEvent -= Die;
 
+        rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
         view.SetActive(false);
-        Debug.Log("YOU DIED");
+    }
+
+    void RespawnPlayer()
+    {
+        rb.velocity = Vector3.zero;
+        //LoseDebris();
     }
 }

@@ -14,7 +14,6 @@ public class RollingBall_ViewModel : MonoBehaviour
 
     public void DeathEffects(GameObject ball)
     {
-        Debug.Log("Particles");
         Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(deathParticles, 3f);
     }
