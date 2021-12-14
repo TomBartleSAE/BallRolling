@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class CPC_Visual
@@ -74,6 +75,8 @@ public class CPC_CameraPath : MonoBehaviour
     private bool paused = false;
     private bool playing = false;
 
+    public event System.Action FlyOverFinishEvent;
+
     void Start ()
     {
         
@@ -125,7 +128,11 @@ public class CPC_CameraPath : MonoBehaviour
         playing = false;
         paused = false;
         StopAllCoroutines();
-        Debug.Log("Finished");
+
+        string currentScene = (SceneManager.GetActiveScene().name);
+        currentScene = currentScene.Replace("_FlyOver", string.Empty);
+        GameManager.Instance.LoadLevel(currentScene);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /// <summary>

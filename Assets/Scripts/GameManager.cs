@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public StateBase inGameState;
     public StateBase inMenuState;
 
+    public TransitionManager transition;
+
     public List<RollingBallModel> totalBalls = new List<RollingBallModel>();
     public GameObject winningBall;
 
@@ -30,10 +32,22 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
     public void LoadLevel(string level)
-   {
+    {
         //Load new level
+        //SceneManager.LoadScene(level);
+        //stateManager.ChangeState(inGameState);
+        //levelLoadedEvent?.Invoke();
+
+        StartCoroutine(LoadLevelCoroutine(level));
+    }
+
+    IEnumerator LoadLevelCoroutine(string level)
+    {
+        transition.NewSceneTransition();
+
+        yield return new WaitForSeconds(3f);
+
         SceneManager.LoadScene(level);
         stateManager.ChangeState(inGameState);
-        //levelLoadedEvent?.Invoke();
-   }
+    }
 }

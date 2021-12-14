@@ -29,6 +29,9 @@ public class LevelReference : MonoBehaviour, ISelectable
     //Load level using this objects unique level reference
     public void Interaction()
     {
-        GameManager.Instance.LoadLevel(levelID);
+        if(GameManager.Instance.GetComponent<StateManager>().currentState == GameManager.Instance.inMenuState)
+        {
+            GameManager.Instance.LoadLevel(levelID);
+        }
     }
 }
