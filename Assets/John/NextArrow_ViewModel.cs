@@ -21,7 +21,7 @@ public class NextArrow_ViewModel : MonoBehaviour
         nextArrowSequence = DOTween.Sequence();
 
         //lobbyPlayer = FindObjectOfType<LobbyPlayer>();
-        LobbyPlayer.NextButtonEvent += NextArrowPressed;
+        //LobbyPlayer.NextButtonEvent += NextArrowPressed;
     }
 
     void NextArrowPressed()

@@ -18,10 +18,7 @@ public class LobbyPlayer : MonoBehaviour
     public bool isReady = false;
     public event Action ReadyUpEvent;
 
-    //Need static for reference
-    public static event Action NextButtonEvent;
-    public static event Action PreviousButtonEvent;
-
+    public bool skinConfirmed = false;
     public void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -31,24 +28,27 @@ public class LobbyPlayer : MonoBehaviour
     // Used to select skin for player model in-game
     public void OnNavigate(InputAction.CallbackContext obj)
     {
-        if (gameObject.activeInHierarchy && obj.performed)
+        if(!skinConfirmed)
         {
-            int horizontal = (int) obj.ReadValue<Vector2>().x;
-
-            skinIndex += horizontal;
-            // Wraps selection around start and end of skin array
-            if (skinIndex < 0)
+            if (gameObject.activeInHierarchy && obj.performed)
             {
-                skinIndex = allSkins.Length - 1;
-            }
-            else if (skinIndex >= allSkins.Length)
-            {
-                skinIndex = 0;
-            }
+                int horizontal = (int)obj.ReadValue<Vector2>().x;
 
-            skin = allSkins[skinIndex];
-            menu?.SetSkin(skin);
-            mesh.material = skin;
+                skinIndex += horizontal;
+                // Wraps selection around start and end of skin array
+                if (skinIndex < 0)
+                {
+                    skinIndex = allSkins.Length - 1;
+                }
+                else if (skinIndex >= allSkins.Length)
+                {
+                    skinIndex = 0;
+                }
+
+                skin = allSkins[skinIndex];
+                menu?.SetSkin(skin);
+                mesh.material = skin;
+            }
         }
     }
 
@@ -63,6 +63,11 @@ public class LobbyPlayer : MonoBehaviour
                 if (isReady)
                 {
                     ReadyUpEvent?.Invoke();
+                    skinConfirmed = true;
+                }
+                else
+                {
+                    skinConfirmed = false;
                 }
             }
         }

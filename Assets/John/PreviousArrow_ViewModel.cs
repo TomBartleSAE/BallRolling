@@ -19,7 +19,7 @@ public class PreviousArrow_ViewModel : MonoBehaviour
         previousArrowSequence = DOTween.Sequence();
 
         //lobbyPlayer = FindObjectOfType<LobbyPlayer>();
-        LobbyPlayer.PreviousButtonEvent += PreviousArrowPressed;
+        //LobbyPlayer.PreviousButtonEvent += PreviousArrowPressed;
     }
 
     void PreviousArrowPressed()

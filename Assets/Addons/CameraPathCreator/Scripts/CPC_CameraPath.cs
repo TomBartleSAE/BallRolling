@@ -130,15 +130,6 @@ public class CPC_CameraPath : MonoBehaviour
         StopAllCoroutines();
 
         UpdateScene();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    private void Update()
-    {
-        if(Input.GetKey(KeyCode.Q))
-        {
-            UpdateScene();
-        }
     }
 
     public void UpdateScene()

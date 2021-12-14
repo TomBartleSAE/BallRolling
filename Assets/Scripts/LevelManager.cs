@@ -20,6 +20,9 @@ public class LevelManager : MonoBehaviour
     PlayerManager playerManager;
     int totalPlayers;
 
+    //Hack bool
+
+
     //public event System.Action<GameObject> OutOfBoundsEvent;
     public event System.Action OutOfBoundsEvent;
 
@@ -42,6 +45,8 @@ public class LevelManager : MonoBehaviour
         //playerManager = FindObjectOfType<PlayerManager>();
         playerManager = FindObjectOfType<PlayerManager>();
         //GameManager.Instance.levelLoadedEvent += OnLevelLoaded;
+
+
         OnLevelLoaded();
 
     }
