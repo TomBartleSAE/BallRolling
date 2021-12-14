@@ -56,16 +56,17 @@ public class LevelManager : MonoBehaviour
     {
         //Getting the total players from the player manager before the level loads (as I found an issue with players being added to the player manager on level load)
         //minusing 1 because lists & arrays start at 0 but int starts at 1
-        if(playerManager?.totalPlayers > 0)
-        {
-            totalPlayers = playerManager.totalPlayers - 1;
-        }
-        
+        // if(playerManager?.totalPlayers > 0)
+        // {
+        //     totalPlayers = playerManager.totalPlayers - 1;
+        // }
+
+        totalPlayers = playerManager.totalPlayers;
 
         //For each spawn point, only spawn the corresponding amount of player balls to the amount of players in the game, otherwise spawn AI balls for all remaining spawn points
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            if (i <= totalPlayers)
+            if (i < totalPlayers)
             {
                 //Spawning the player prefabs
                 //PlayerMovementModel newPlayer = Instantiate(player, spawnPoints[i].position, spawnPoints[i].rotation);
@@ -76,7 +77,7 @@ public class LevelManager : MonoBehaviour
                 PlayerCameraModel newCamera = Instantiate(playerCamera, spawnPoints[i].position, Quaternion.Euler(25f, 0,0));
 
                 //Assigning camera references
-                newPlayer.GetComponent<PlayerMovementModel>().camera = newCamera;
+                newPlayer.GetComponent<PlayerMovementModel>().cameraModel = newCamera;
                 newCamera.target = newPlayer.transform;
 
                 //Add all spawned players + cameras to lists for keeping track

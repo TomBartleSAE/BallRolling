@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 9091939047298873929}
+  view: {fileID: 0}
   ballTransform: {fileID: 2982478036515792049}
   duration: 0
 --- !u!114 &-3285255198033068402
@@ -139,7 +140,7 @@ MonoBehaviour:
   _parentBlackboard: {fileID: 0}
   _serializedBlackboard: '{"_variables":{"isBallNearby":{"_propertyPath":"AIBallModel.isBallNearby","_name":"isBallNearby","_id":"c12d7288-604c-4403-b025-508ca6d7e84c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"mySize":{"_value":5.0,"_propertyPath":"HealthModel.myHealth","_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"otherBallSize":{"_value":5.0,"_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"otherBallSize":{"_value":5.0,"_propertyPath":"AIBallModel.closestBallSize","_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
   _serializedVariables:
@@ -149,7 +150,7 @@ MonoBehaviour:
   - _json: '{"_value":5.0,"_propertyPath":"HealthModel.myHealth","_name":"mySize","_id":"0feb4f4e-f7ef-48fa-a2b7-a9d2cafc6803","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
-  - _json: '{"_value":5.0,"_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+  - _json: '{"_value":5.0,"_propertyPath":"AIBallModel.closestBallSize","_name":"otherBallSize","_id":"3f34a102-2f5a-46bf-bf1a-3609611905b8","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!54 &9091939047298873929

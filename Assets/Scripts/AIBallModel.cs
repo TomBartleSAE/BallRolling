@@ -68,6 +68,7 @@ public class AIBallModel : MonoBehaviour
 
     public void Chase()
     {
+        GetComponent<FollowPath>().enabled = false;
         Vector3 chaseDirection = target.position - transform.position;
         chaseDirection.y = 0;
         rb.AddForce(chaseDirection * moveSpeed, ForceMode.Force);
@@ -75,6 +76,7 @@ public class AIBallModel : MonoBehaviour
 
     public void Flee()
     {
+        GetComponent<FollowPath>().enabled = false;
         Vector3 fleeDirection = transform.position - target.position;
         fleeDirection.y = 0;
         rb.AddForce(fleeDirection * moveSpeed, ForceMode.Force);

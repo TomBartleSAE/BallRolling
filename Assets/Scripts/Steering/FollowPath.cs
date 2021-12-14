@@ -15,7 +15,7 @@ namespace Tom
         
         public void OnEnable()
         {
-            targetNode = pathfinding.path[pathfinding.path.Count - 1];
+            targetNode = pathfinding.path[0];
         }
 
         public void Update()
@@ -28,7 +28,7 @@ namespace Tom
                 if (Vector2.Distance(targetNode.coordinates, position) < followRange)
                 {
                     // Finds the next node in the path
-                    targetNode = pathfinding.path[pathfinding.path.IndexOf(targetNode) - 1];
+                    targetNode = pathfinding.path[pathfinding.path.IndexOf(targetNode) + 1];
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace Tom
         {
             if (pathfinding.path != null)
             {
-                rb.AddForce(new Vector3(direction.x, 0, direction.y), ForceMode.Force);
+                rb.AddForce(new Vector3(direction.x, 0, direction.y) * 3, ForceMode.Force);
             }
         }
     }

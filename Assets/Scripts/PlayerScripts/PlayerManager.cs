@@ -16,20 +16,13 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         inputManager = GetComponent<PlayerInputManager>();
-        gameManager = FindObjectOfType<GameManager>();
         inputManager.onPlayerJoined += PlayerJoined;
-        gameManager.levelLoadedEvent += TotalPlayers;
         DontDestroyOnLoad(this);
     }
 
     void PlayerJoined(PlayerInput newPlayer)
     {
         players.Add(newPlayer);
-        playerCount += 1;
-    }
-
-    void TotalPlayers()
-    {
-        totalPlayers = playerCount;
+        totalPlayers++;
     }
 }

@@ -9,7 +9,7 @@ public class PlayerMovementModel : MonoBehaviour
     Vector2 playerInput;
 
     CameraTarget camTarget;
-    public PlayerCameraModel camera;
+    public PlayerCameraModel cameraModel;
 
     [SerializeField]
     float speed;
@@ -46,7 +46,10 @@ public class PlayerMovementModel : MonoBehaviour
         //currentRotation = Mathf.Clamp(currentRotation, -90, 90);
         //pivotX.localEulerAngles += new Vector3(0, obj.ReadValue<Vector2>().x, 0) * 0.1f;
 
-        camera.currentRotation = obj.ReadValue<Vector2>().x;
+        if (cameraModel != null)
+        {
+            cameraModel.currentRotation = obj.ReadValue<Vector2>().x;
+        }
 
         //pivotY.localEulerAngles += new Vector3(currentRotation, 0, 0) * 0.1f;
     }
@@ -62,7 +65,7 @@ public class PlayerMovementModel : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (camera != null)
+        if (cameraModel != null)
         {
             Vector3 forwardDirection = camTarget.GetMyCamera().direction.forward * playerInput.y;
             Vector3 sideDirection = camTarget.GetMyCamera().direction.right * playerInput.x;
