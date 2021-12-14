@@ -129,10 +129,23 @@ public class CPC_CameraPath : MonoBehaviour
         paused = false;
         StopAllCoroutines();
 
+        UpdateScene();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Q))
+        {
+            UpdateScene();
+        }
+    }
+
+    public void UpdateScene()
+    {
         string currentScene = (SceneManager.GetActiveScene().name);
         currentScene = currentScene.Replace("_FlyOver", string.Empty);
         GameManager.Instance.LoadLevel(currentScene);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /// <summary>
